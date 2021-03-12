@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
-  title = 'recap';
+  title:string = 'recap';
+  user:string = 'Ceren Susuz';
 }
