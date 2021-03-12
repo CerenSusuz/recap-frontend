@@ -1,7 +1,6 @@
-<div class="spinner-border text-info" role="status">
-  <span class="sr-only">Loading...</span>
+<div *ngIf="dataLoaded==false" class="spinner-border text-info" role="status">
 </div>
-<ul class="list-group list-group-flush m-4">
+<ul *ngIf="dataLoaded==true" class="list-group list-group-flush m-4">
   <h3 style="font-weight: 700; color:darkcyan">Brands</h3>
     <li class="list-group-item" *ngFor="let brand of brands">{{brand.name}}</li>
   </ul>
