@@ -1,24 +1,27 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-info" role="status">
-</div>
-<table *ngIf="dataLoaded==true" class="table m-4">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">brandName</th>
-        <th scope="col">colorName</th>
-        <th scope="col">modelYear</th>
-        <th scope="col">dailyPrice</th>
-        <th scope="col">description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let car of cars">
-        <th scope="row">{{car.id}}</th>
-        <td>{{car.brandName}}</td>
-        <td>{{car.colorName}}</td>
-        <td>{{car.modelYear}}</td>
-        <td>{{car.dailyPrice}}</td>
-        <td>{{car.description}}</td>
-      </tr>
-    </tbody>
-  </table>
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-info m-4"
+  role="status"
+></div>
+
+<table *ngIf="dataLoaded == true" class="table m-4">
+  <thead>
+    <tr>
+      <th scope="col" style="background-color: rgb(174, 204, 214); border-radius: 10px">Brand</th>
+      <th scope="col" style="background-color: rgb(148, 199, 218); border-radius: 10px">Color</th>
+      <th scope="col" style="background-color: rgb(146, 214, 236); border-radius: 10px">Model Year</th>
+      <th scope="col" style="background-color: rgb(116, 207, 238); border-radius: 10px">Daily Price</th>
+      <th scope="col" style="background-color: rgb(60, 200, 247); border-radius: 10px">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars">
+      <td>{{ car.brandName }}</td>
+      <td>{{ car.colorName}}</td>
+      <td>{{ car.modelYear }}</td>
+      <td>{{ car.dailyPrice }}</td>
+      <td>{{ car.description }}</td>
+    </tr>
+  </tbody>
+</table>
+

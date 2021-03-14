@@ -1,6 +1,20 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-info" role="status">
-</div>
-<ul *ngIf="dataLoaded==true" class="list-group list-group-flush m-4">
-  <h3 style="font-weight: 700; color:darkcyan">Brands</h3>
-    <li class="list-group-item" *ngFor="let brand of brands">{{brand.name}}</li>
-  </ul>
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-info m-4"
+  role="status"
+></div>
+<ul *ngIf="dataLoaded == true" 
+    class="list-group list-group-flush m-4">
+    <li class="list-group-item disabled p-3" 
+    style="background-color: lightblue; border-radius: 10px">
+    Brands
+    </li>
+  <li
+    (click)="setCurrentBrand(brand)"
+    routerLink = "/cars/brand/{{brand.brandId}}"
+    *ngFor="let brand of brands"
+    [class]="getBrandClass(brand)"
+  >
+    {{ brand.name }}
+  </li>
+</ul>
