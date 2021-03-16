@@ -3,12 +3,15 @@
   class="spinner-border text-info m-4"
   role="status"
 ></div>
+
 <ul *ngIf="dataLoaded == true" 
     class="list-group list-group-flush m-4">
-    <li class="list-group-item disabled p-3" 
-    style="background-color: lightblue; border-radius: 10px">
+    
+    <h4 class="ps-2"
+    style="background-color: lightblue; border-radius: 10px; height: 28px;">
     Brands
-    </li>
+</h4>
+
   <li
     (click)="setCurrentBrand(brand)"
     routerLink = "/cars/brand/{{brand.brandId}}"
@@ -17,4 +20,14 @@
   >
     {{ brand.name }}
   </li>
+
+  <button
+    routerLink="/cars"
+    (click)="clearFilter()"
+    type="button"
+    aria-current="true"
+    class="btn btn-info"
+  >
+    Clear Filter
+  </button>
 </ul>

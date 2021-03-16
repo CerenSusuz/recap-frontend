@@ -11,16 +11,20 @@
       <th scope="col" style="background-color: rgb(148, 199, 218); border-radius: 10px">Color</th>
       <th scope="col" style="background-color: rgb(146, 214, 236); border-radius: 10px">Model Year</th>
       <th scope="col" style="background-color: rgb(116, 207, 238); border-radius: 10px">Daily Price</th>
-      <th scope="col" style="background-color: rgb(60, 200, 247); border-radius: 10px">Description</th>
+      <th scope="col" style="background-color: rgb(98, 217, 250); border-radius: 10px">Description</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let car of cars">
+    <tr *ngFor="let car of cars"
+    (click)="setCurrentCar(car)"
+    routerLink = "/cars/details/{{car.id}}"
+    [class]="getCarClass(car)">
       <td>{{ car.brandName }}</td>
       <td>{{ car.colorName}}</td>
       <td>{{ car.modelYear }}</td>
       <td>{{ car.dailyPrice }}</td>
       <td>{{ car.description }}</td>
+      <td><button type="button" class="btn btn-success ms-3">Rent this car</button></td>
     </tr>
   </tbody>
 </table>

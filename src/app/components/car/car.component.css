@@ -1,3 +1,7 @@
 .cursorPointer{
     cursor: pointer;
 }
+
+#image{
+    vertical-align: middle;
+}

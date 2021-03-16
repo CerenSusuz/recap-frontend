@@ -12,6 +12,7 @@ export class ColorComponent implements OnInit {
   colors:Color[] = [];
   currentColor:Color;
   dataLoaded = false;
+
   constructor(private colorService:ColorService) { }
 
   ngOnInit(): void {
@@ -24,6 +25,14 @@ export class ColorComponent implements OnInit {
        this.dataLoaded = true;
     })
   }
+  
+  getAllColorClass() {
+    if (!this.currentColor) {
+      return 'list-group-item active cursorPointer';
+    } else {
+      return 'list-group-item cursorPointer';
+    }
+  }
 
   setCurrentColor(color:Color){
     this.currentColor=color;
@@ -31,9 +40,14 @@ export class ColorComponent implements OnInit {
 
   getColorClass(color:Color){
     if(color == this.currentColor){
-      return "list-group-item active"
+      return "list-group-item active cursorPointer"
     }else{
-      return "list-group-item"
+      return "list-group-item cursorPointer"
     }
   }
+
+  clearFilter() {
+    this.getColors();
+  }
+
 }

@@ -10,12 +10,13 @@ import { ListResponseModel } from '../models/listResponseModel';
 })
 
 export class CarService {
+
   apiURL = environment.apiURL;
 
   constructor(private httpClient:HttpClient) { }
 
   getCars():Observable<ListResponseModel<Car>>{
-    let newPath= this.apiURL+"cars/getcardetails"
+    let newPath= this.apiURL+"cars/getcardetails";
     return this.httpClient
     .get<ListResponseModel<Car>>(newPath);
   }
@@ -30,4 +31,8 @@ export class CarService {
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
 
+  getCarDetail(carId:number):Observable<ListResponseModel<Car>>{
+    let newPath = this.apiURL + 'cars/getcardetailbyid?carId='+carId;
+    return this.httpClient.get<ListResponseModel<Car>>(newPath)
+  }
 }

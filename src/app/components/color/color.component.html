@@ -3,13 +3,17 @@
   class="spinner-border text-info m-2"
   role="status"
 ></div>
-<ul *ngIf="dataLoaded == true" 
-class="list-group list-group-flush m-4">
-  <li class="list-group-item disabled p-3" 
-  style="background-color: lightblue; border-radius: 10px">
-    Colors
-  </li>
-  <li
+
+<ul 
+  *ngIf="dataLoaded == true" 
+  class="list-group list-group-flush m-4">
+  
+<h4 class="ps-2"
+  style="background-color: lightblue; border-radius: 10px; height: 28px;">
+  Colors
+</h4> 
+  
+<li
     (click)="setCurrentColor(color)"
     routerLink = "/cars/color/{{color.colorId}}"
     *ngFor="let color of colors"
@@ -17,4 +21,14 @@ class="list-group list-group-flush m-4">
   >
     {{ color.name }}
   </li>
+  
+  <button
+  routerLink="/cars"
+  (click)="clearFilter()"
+  type="button"
+  aria-current="true"
+  class="btn btn-info"
+>
+  Clear Filter
+</button>
 </ul>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
 import { CarService } from 'src/app/services/car.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-car',
@@ -11,7 +12,9 @@ import { CarService } from 'src/app/services/car.service';
 
 export class CarComponent implements OnInit {
 cars : Car[] = [];
+currentCar:Car;
 dataLoaded = false;
+basePath= environment.baseURL;
 
   constructor(private carService:CarService,
     private activatedRoute:ActivatedRoute) { }
@@ -49,5 +52,17 @@ dataLoaded = false;
     })
   }
   
+  getCarClass(car:Car){
+    if(car == this.currentCar){
+      return "table-info cursorPointer"
+    }else{
+      return "cursorPointer"
+    }
+  }
+
+  setCurrentCar(car:Car){
+    this.currentCar=car;
+  }
+
 }
 
