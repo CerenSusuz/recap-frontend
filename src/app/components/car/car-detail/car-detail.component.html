@@ -2,7 +2,7 @@
   <div class="card-body"> 
       <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <div *ngFor="let image of car let i = index" [ngClass]="getSliderClassName(i)">
+            <div *ngFor="let image of images let i = index" [ngClass]="getSliderClassName(i)">
               <img src="{{imageUrl}}/{{image.imagePath}}" class="d-block w-100" width="800" height="400" alt="...">
             </div>
           </div>
@@ -26,7 +26,7 @@
             </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let car of car">
+          <tr *ngFor="let car of cars">
             <td>{{ car.brandName }}</td> 
             <td>{{ car.colorName}}</td>
             <td>{{ car.modelYear }}</td>

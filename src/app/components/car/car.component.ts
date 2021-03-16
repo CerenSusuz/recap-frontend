@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 
 export class CarComponent implements OnInit {
-cars : Car[] = [];
+cars : Car[];
 currentCar:Car;
 dataLoaded = false;
 basePath= environment.baseURL;
