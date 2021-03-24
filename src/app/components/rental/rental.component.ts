@@ -67,7 +67,7 @@ export class RentalComponent implements OnInit {
     let rental:Rental = 
       {
         carID: this.car.id,
-        customerID: this.customerId,
+        customerID: parseInt(this.customerId.toString()),
         rentDate: this.rentDate,
         returnDate: this.returnDate
       }
