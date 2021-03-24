@@ -1,0 +1,69 @@
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title">Add Car</h5>
+            </div>
+            <div class="card-body">
+                <label for="carName">carName</label>
+                <form [formGroup]="carAddForm">
+                    <div class="form-group">
+                        <input type="text" 
+                        id="carName" 
+                        formControlName="carName" 
+                        class="form-control"
+                        placeholder="carName"/>
+                    </div>
+                    <label for="brandName">brandName</label>
+                    <div class="form-group">
+                        <input type="text" 
+                        id="brandName" 
+                        formControlName="brandName" 
+                        class="form-control"
+                        placeholder="brandName"/>
+                    </div>
+                    <label for="colorName">colorName</label>
+                    <div class="form-group">
+                        <input type="text" 
+                        id="colorName" 
+                        formControlName="colorName" 
+                        class="form-control"
+                        placeholder="colorName"/>
+                    </div>
+                    <label for="modelYear">modelYear</label>
+                    <div class="form-group">
+                        <input type="number" 
+                        id="modelYear" 
+                        formControlName="modelYear" 
+                        class="form-control"
+                        placeholder="modelYear"/>
+                    </div>
+                    <label for="dailyPrice">dailyPrice</label>
+                    <div class="form-group">
+                        <input type="number" 
+                        id="dailyPrice" 
+                        formControlName="dailyPrice" 
+                        class="form-control"
+                        placeholder="dailyPrice"/>
+                    </div>
+                    <label for="description">description</label>
+                    <div class="form-group">
+                        <input type="text" 
+                        id="description" 
+                        formControlName="description" 
+                        class="form-control"
+                        placeholder="description"/>
+                    </div>
+                    <label for="images">images</label>
+                    <div class="form-group">
+                        <input type="image" 
+                        id="images" 
+                        formControlName="images" 
+                        class="form-control"
+                        placeholder="images"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

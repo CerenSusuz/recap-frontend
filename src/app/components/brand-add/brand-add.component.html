@@ -1,0 +1,21 @@
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title">Add Brand</h5>
+            </div>
+            <div class="card-body">
+                <label for="brandName">brandName</label>
+                <form [formGroup]="brandAddForm">
+                    <div class="form-group">
+                        <input type="text" 
+                        id="brandName" 
+                        formControlName="brandName" 
+                        class="form-control"
+                        placeholder="brandName"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

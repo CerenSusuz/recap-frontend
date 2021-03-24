@@ -75,6 +75,12 @@
             Daily Price
           </th>
           <th
+          scope="col"
+          style="background-color: rgb(100, 211, 248); border-radius: 10px"
+        >
+          Daily Price + VAT
+        </th>
+          <th
             scope="col"
             style="background-color: rgb(98, 217, 250); border-radius: 10px"
           >
@@ -88,7 +94,8 @@
           <td>{{ car.brandName | uppercase}}</td>
           <td>{{ car.colorName }}</td>
           <td>{{ car.modelYear }}</td>
-          <td>{{ car.dailyPrice }}</td>
+          <td>{{ car.dailyPrice | currency }}</td>
+          <td>{{ car.dailyPrice | vatAdded:8 | currency }}</td>
           <td>{{ car.description }}</td>
           <td>
           <button

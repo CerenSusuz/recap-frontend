@@ -18,4 +18,8 @@ export class RentalService {
     return this.httpClient.get<ListResponseModel<Rental>>(newPath);
 
   }
+
+  add(rental:Rental){
+    return this.httpClient.post(this.apiURL+'rentals/add',rental);
+  }
 }

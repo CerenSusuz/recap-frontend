@@ -5,6 +5,8 @@ import { CustomerService } from 'src/app/services/customer.service';
 import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer';
 import { Car } from 'src/app/models/car';
+import { RentalService } from 'src/app/services/rental.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-rental',
@@ -14,6 +16,7 @@ import { Car } from 'src/app/models/car';
 
 export class RentalComponent implements OnInit {
 
+  rentalAddForm : FormGroup;
   rentals:Rental[] = [];
   customers:Customer[];
   customerId:number;
@@ -23,6 +26,7 @@ export class RentalComponent implements OnInit {
   
   
   constructor(
+    private rentalService:RentalService,
     private router:Router,
     private customerService:CustomerService,
     private toastr: ToastrService
@@ -59,16 +63,18 @@ export class RentalComponent implements OnInit {
     return today.toISOString().slice(0,10)
   }
 
-  createRental(){   
-    let MyRental:Rental = 
-  {
-    rentDate: this.rentDate,
-    returnDate: this.returnDate,
-    carID: this.car.id,
-    customerID: this.customerId
-  }
-    this.toastr.success("You're being redirected to the checkout page!");
-    this.router.navigate(['/payment', JSON.stringify(MyRental)]);
-
-  }
+  add(){   
+    let rental:Rental = 
+      {
+        carID: this.car.id,
+        customerID: this.customerId,
+        rentDate: this.rentDate,
+        returnDate: this.returnDate
+      }
+        this.rentalService.add(rental).subscribe(data=>{
+        this.toastr.success("Successfully!");
+        })
+        
+        this.router.navigate(['/payment', JSON.stringify(rental)]);
+    }
 }
