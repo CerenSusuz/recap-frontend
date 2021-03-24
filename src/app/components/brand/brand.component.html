@@ -4,6 +4,15 @@
   role="status"
 ></div>
 
+<div class="m-3">
+  <label for="exampleFormControlInput1" class="form-label" style="color:rgb(74, 141, 7);">Search via Brand</label>
+  <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" style="border-radius: 10px; border-color: rgb(74, 141, 7);" placeholder="brand...">
+</div>
+
+<div *ngIf="filterText.length>2" class="alert-warning m-2">
+  {{filterText}} searching...
+</div>
+
 <ul *ngIf="dataLoaded == true" 
     class="list-group list-group-flush m-4">
     
@@ -15,7 +24,7 @@
   <li
     (click)="setCurrentBrand(brand)"
     routerLink = "/cars/brand/{{brand.brandId}}"
-    *ngFor="let brand of brands"
+    *ngFor="let brand of brands | filterBrandPipe:filterText"
     [class]="getBrandClass(brand)"
   >
     {{ brand.name }}

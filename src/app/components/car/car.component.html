@@ -3,7 +3,7 @@
   class="spinner-border text-info m-4"
   role="status"
 ></div>
-
+<app-car-filter></app-car-filter>
 <table *ngIf="dataLoaded == true" class="table m-4">
   <thead>
     <tr>
@@ -11,6 +11,7 @@
       <th scope="col" style="background-color: rgb(148, 199, 218); border-radius: 10px">Color</th>
       <th scope="col" style="background-color: rgb(146, 214, 236); border-radius: 10px">Model Year</th>
       <th scope="col" style="background-color: rgb(116, 207, 238); border-radius: 10px">Daily Price</th>
+      <th scope="col" style="background-color: rgb(101, 210, 247); border-radius: 10px">Daily Price + VAT</th>
       <th scope="col" style="background-color: rgb(98, 217, 250); border-radius: 10px">Description</th>
     </tr>
   </thead>
@@ -19,12 +20,13 @@
     (click)="setCurrentCar(car)"
     routerLink = "/cars/details/{{car.id}}"
     [class]="getCarClass(car)">
-      <td>{{ car.brandName }}</td>
+      <td>{{ car.brandName | uppercase }}</td>
       <td>{{ car.colorName}}</td>
       <td>{{ car.modelYear }}</td>
-      <td>{{ car.dailyPrice }}</td>
+      <td>{{ car.dailyPrice | currency }}</td>
+      <td>{{ car.dailyPrice | vatAdded:8 | currency}}</td>
       <td>{{ car.description }}</td>
-      <td><button type="button" class="btn btn-success ms-3">Rent this car</button></td>
+      <td><button type="button" class="btn btn-success">Get Details</button></td>
     </tr>
   </tbody>
 </table>

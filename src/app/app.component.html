@@ -2,13 +2,15 @@
   <app-nav></app-nav>
     <div class="row">
       <div class="col-md-2">
-        <div class="sticky-top sidebar">
+        <div class="sticky-top sidebar m-2">
           <div class="box"><app-brand></app-brand></div>
           <div class="box"><app-color></app-color></div>
         </div>
       </div>  
       <div class="col-md-6 ms-2">
-        <div class="body"><router-outlet></router-outlet></div>
+        <div class="body">
+          <router-outlet></router-outlet>
+        </div>
       </div>
     </div>    
   <app-footer></app-footer>

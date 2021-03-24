@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CarDetailComponent implements OnInit {
 
-  cars:Car[];
+  car:Car;
   images:CarImage[];
   imageUrl = environment.baseURL;
 
@@ -38,8 +38,7 @@ export class CarDetailComponent implements OnInit {
   getCarDetails(carId:number)
   {
     this.carService.getCarDetail(carId).subscribe(response => {
-      this.cars = response.data;
-      console.log(response);
+      this.car = response.data;
     })
   }
 

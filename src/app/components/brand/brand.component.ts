@@ -12,6 +12,7 @@ export class BrandComponent implements OnInit {
   brands: Brand[] = [];
   currentBrand:Brand;
   dataLoaded = false;
+  filterText="";
 
   constructor(private brandService: BrandService) { }
 
@@ -28,13 +29,14 @@ export class BrandComponent implements OnInit {
 
   getBrandClass(brand:Brand){
     if(brand == this.currentBrand){
-      return "list-group-item active cursorPointer"
+      return "list-group-item cursorPointer active"
     }else{
       return "list-group-item cursorPointer "
     }
   }
 
   clearFilter() {
+    this.filterText = "";
     this.getBrands();
   }
 

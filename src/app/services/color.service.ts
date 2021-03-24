@@ -11,17 +11,17 @@ import { ListResponseModel } from '../models/listResponseModel';
 
 export class ColorService {
 
-  apiURL = environment.apiURL +'colors/';
+  apiURL = environment.apiURL;
   constructor(private httpClient:HttpClient) { }
 
   getColors(): Observable<ListResponseModel<Color>>{
-    let newUrl= this.apiURL+'getall';
+    let newUrl= this.apiURL+'colors/getall';
     return this.httpClient
     .get<ListResponseModel<Color>>(newUrl);
   }
 
   getColorById(id: number): Observable<ListResponseModel<Color>> {
-    let newUrl = this.apiURL+'getbyid'+id
+    let newUrl = this.apiURL+'colors/getbyid'+id
     return this.httpClient.get<ListResponseModel<Color>>(newUrl);
   }
 }
