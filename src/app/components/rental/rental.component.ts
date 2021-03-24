@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Rental } from 'src/app/models/rental';
 import { CustomerService } from 'src/app/services/customer.service';
-import { RentalService } from 'src/app/services/rental.service';
 import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer';
 import { Car } from 'src/app/models/car';
@@ -24,8 +23,6 @@ export class RentalComponent implements OnInit {
   
   
   constructor(
-    private rentalService:RentalService,
-    private activatedRoute:ActivatedRoute, 
     private router:Router,
     private customerService:CustomerService,
     private toastr: ToastrService
@@ -62,14 +59,16 @@ export class RentalComponent implements OnInit {
     return today.toISOString().slice(0,10)
   }
 
-  createRental(){
-    let createRental:Rental = {
-      carID:this.car.id,
-      customerID:this.customerId,
-      rentDate:this.rentDate,
-      returnDate:this.returnDate
-    }
-    this.router.navigate(['/payment/', JSON.stringify(createRental)]);
-    this.toastr.info("You're being redirected to the checkout page!", "Payment transactions");
+  createRental(){   
+    let MyRental:Rental = 
+  {
+    rentDate: this.rentDate,
+    returnDate: this.returnDate,
+    carID: this.car.id,
+    customerID: this.customerId
+  }
+    this.toastr.success("You're being redirected to the checkout page!");
+    this.router.navigate(['/payment', JSON.stringify(MyRental)]);
+
   }
 }

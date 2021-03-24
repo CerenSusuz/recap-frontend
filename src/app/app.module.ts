@@ -20,9 +20,7 @@ import { FilterBrandPipePipe } from './pipes/filter-brand-pipe.pipe';
 import { CarFilterComponent } from './components/car/car-filter/car-filter.component';
 import { PaymentComponent } from './components/payment/payment.component';
 
-
 import { ToastrModule } from 'ngx-toastr';
-
 
 @NgModule({
   declarations: [
@@ -50,6 +48,7 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
     })
+
   ],
   providers: [],
   bootstrap: [AppComponent]

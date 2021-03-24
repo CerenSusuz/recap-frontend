@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr >
+          <tr *ngIf="car!=undefined" >
             <td>{{car.brandName}}</td>
             <td>{{car.colorName}}</td>
             <td>{{car.modelYear}}</td>
@@ -88,7 +88,7 @@
     </div>
     <div class="card-footer">
       <div class="row">
-          <button (click)="payment()" class="btn btn-success"><strong>{{amountOfPayment | currency}} </strong>PAY</button>
+          <button (click)="payment()" routerLink = "/cars" class="btn btn-success"><strong>{{amountOfPayment | currency}}</strong>PAY</button>
       </div>
   </div>
   </div>
