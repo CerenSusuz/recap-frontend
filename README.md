@@ -1,3 +1,6 @@
+<img src="images/VisualStudioCodeLogo.png" alt="Logo" width="80" height="80">
+<img src="images/angular.png" alt="Logo" width="80" height="80">
+
 # Recap
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
