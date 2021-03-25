@@ -17,13 +17,13 @@ import { CarDetailComponent } from './components/car/car-detail/car-detail.compo
 import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { FilterColorPipePipe } from './pipes/filter-color-pipe.pipe';
 import { FilterBrandPipePipe } from './pipes/filter-brand-pipe.pipe';
-import { CarFilterComponent } from './components/car/car-filter/car-filter.component';
 import { PaymentComponent } from './components/payment/payment.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { BrandAddComponent } from './components/brand-add/brand-add.component';
 import { ColorAddComponent } from './components/color-add/color-add.component';
 import { CarAddComponent } from './components/car-add/car-add.component';
+import { CarFilterComponent } from './components/car/car-filter/car-filter.component';
 
 @NgModule({
   declarations: [
@@ -39,11 +39,11 @@ import { CarAddComponent } from './components/car-add/car-add.component';
     VatAddedPipe,
     FilterColorPipePipe,
     FilterBrandPipePipe,
-    CarFilterComponent,
     PaymentComponent,
     BrandAddComponent,
     ColorAddComponent,
-    CarAddComponent
+    CarAddComponent,
+    CarFilterComponent
   ],
   imports: [
     BrowserModule,

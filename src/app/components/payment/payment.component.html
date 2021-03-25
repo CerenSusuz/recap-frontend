@@ -1,6 +1,7 @@
 <div class="card mt-4">
     <div class="card-body">
       <table class="table">
+        
         <thead>
           <tr>
             <th>Brand</th>
@@ -12,6 +13,7 @@
             <th>Total</th>
           </tr>
         </thead>
+
         <tbody>
           <tr *ngIf="car!=undefined" >
             <td>{{car.brandName}}</td>
@@ -20,14 +22,12 @@
             <td>{{rental.rentDate}}</td>
             <td>{{rental.returnDate}}</td>
             <td>{{car.dailyPrice | vatAdded:8 |currency}}</td>
-            <td><strong class="text-danger">{{amountOfPayment | currency}}</strong></td>
+            <td><strong class="text-danger">{{amount | currency}}</strong></td>
           </tr>
         </tbody>
       </table>
     </div>
-  
   </div>
-  
   
   <div class="card mt-4">
     <div class="card-header text-center">
@@ -39,44 +39,48 @@
           <span>Name on the card</span>
           <input
             type="text"
-            name="name"
             class="form-control"
             required="required"
           />
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="inputbox mt-3 mr-2">
               <span>Card Number</span>
               <input
                 type="text"
-                name="name"
                 class="form-control"
                 required="required"
               />
               <i class="fa fa-credit-card"></i>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-8">
             <div class="d-flex flex-row">
               <div class="inputbox mt-3 mr-2">
-                <span>Expiration Date</span>
+                <span>Expiration Month</span>
                 <input
                   type="text"
-                  name="name"
                   class="form-control"
                   required="required"
                 />
               </div>
               <div class="inputbox mt-3 mr-2">
-                <span>Security Code</span>
+                <span>Expiration Year</span>
                 <input
                   type="text"
-                  name="name"
                   class="form-control"
                   required="required"
                 />
               </div>
+            </div>
+            <div class="inputbox mt-3 mr-2">
+              <span>Security Code</span>
+              <input
+                type="text"
+                class="form-control"
+                required="required"
+              />
             </div>
           </div>
         </div>
@@ -85,7 +89,7 @@
     </div>
     <div class="card-footer">
       <div class="row">
-          <button (click)="payment()" routerLink = "/cars" class="btn btn-success"><strong>{{amountOfPayment | currency}}</strong>PAY</button>
+          <button (click)="payment()" routerLink = "/cars" class="btn btn-success"><strong>{{ amount | currency }}  PAY </strong></button>
       </div>
   </div>
   </div>

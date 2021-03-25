@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { PaymentService } from 'src/app/services/payment.service';
 import { Rental } from 'src/app/models/rental';
 import { Car } from 'src/app/models/car';
+import { Payment } from 'src/app/models/payment';
 
 @Component({
   selector: 'app-payment',
@@ -15,7 +16,7 @@ export class PaymentComponent implements OnInit {
 
   rental:Rental;
   car:Car;
-  amountOfPayment:number=0;
+  amount:number = 0;
 
   constructor(private activatedRoute:ActivatedRoute,
     private carService:CarService,
@@ -42,29 +43,29 @@ export class PaymentComponent implements OnInit {
   }
 
   totalPayment(){
-
     if(this.rental.returnDate != null )
     {
-      var date1 = new Date(this.rental.returnDate.toString());
-      var date2 = new Date(this.rental.rentDate.toString());
-      var difference = date1.getTime() - date2.getTime();
+      let dateRent = new Date(this.rental.returnDate.toString());
+      let dateReturn = new Date(this.rental.rentDate.toString());
 
-      var numberOfDays = Math.ceil(difference / (1000 * 3600 * 24));
+      let difference = (dateRent.getTime() - dateReturn.getTime());
+
+      let numberOfDays = Math.ceil(difference / (1000 * 3600 * 24));
       
-      this.amountOfPayment = numberOfDays * (this.car.dailyPrice + ( this.car.dailyPrice * 8 / 100));
+      this.amount = numberOfDays * (this.car.dailyPrice + ( this.car.dailyPrice * 8 / 100));
       
-      if(this.amountOfPayment <= 0)
+      if(this.amount <= 0)
       {
          this.router.navigate(['/cars']);
-         this.toastr.error("You are being redirected to the car list", "Incorrect process");
+         this.toastr.error("Payment Error");
       }
-
     }
   }
 
+  //payment test not real payment process
   payment(){
     this.paymentService.payment().subscribe(response => {
-      this.toastr.success("Successfully Process");
+      this.toastr.success("Payment Successfully");
     })
   }
 

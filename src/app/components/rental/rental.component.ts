@@ -17,11 +17,14 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class RentalComponent implements OnInit {
 
   rentalAddForm : FormGroup;
+
   rentals:Rental[] = [];
   customers:Customer[];
+
   customerId:number;
   rentDate:Date;
   returnDate:Date;
+  
   @Input() car:Car;
   
   
@@ -33,17 +36,8 @@ export class RentalComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    //this.getRental();
     this.getCustomer();
   }
-
-  // getRental(){
-  //   this.rentalService.getRental().subscribe(response => {
-  //     this.rentals = response.data;
-  //     this.dataLoaded = true;
-  //     console.log(this.rentals);
-  //   })
-  // }
 
   getCustomer(){
     this.customerService.getCustomer().subscribe(response => {
@@ -51,15 +45,9 @@ export class RentalComponent implements OnInit {
     })
   }
 
-  getRentMinDate(){
+  getDate(day : number){
     var today  = new Date();
-    today.setDate(today.getDate() + 1);
-    return today.toISOString().slice(0,10)
-  }
-
-  getReturnMinDate(){
-    var today  = new Date();
-    today.setDate(today.getDate() + 2);
+    today.setDate(today.getDate() + day);
     return today.toISOString().slice(0,10)
   }
 
@@ -72,9 +60,9 @@ export class RentalComponent implements OnInit {
         returnDate: this.returnDate
       }
         this.rentalService.add(rental).subscribe(data=>{
-        this.toastr.success("Successfully!");
+        this.toastr.success("Rent Process OK!");
         })
-        
+
         this.router.navigate(['/payment', JSON.stringify(rental)]);
     }
 }

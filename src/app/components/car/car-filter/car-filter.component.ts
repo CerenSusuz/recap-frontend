@@ -1,4 +1,3 @@
-  
 import { Component, OnInit } from '@angular/core';
 import { Brand } from 'src/app/models/brand';
 import { Color } from 'src/app/models/color';
@@ -40,15 +39,23 @@ export class CarFilterComponent implements OnInit {
 
   getSelectedBrand(brandId: number) {
     if (this.brandFilter == brandId)
+    {
       return true;
+    }
     else
+    {
       return false;
+    }
   }
   
   getSelectedColor(colorId: number) {
     if (this.colorFilter == colorId)
+    {
       return true;
+    }
     else
+    {
       return false;
+    }
   }
 }

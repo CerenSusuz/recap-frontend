@@ -1,27 +1,27 @@
 <div class="d-grid gap-2">
   <button
     type="button"
-    class="btn btn-success"
+    class="btn btn-outline-success"
     data-bs-toggle="modal"
-    data-bs-target="#exampleModal"
+    data-bs-target="#rentModal"
   >
-  Rent the Car
+  Rent It
   </button>
 </div>
 
 <div
   class="modal fade"
-  id="exampleModal"
+  id="rentModal"
   tabindex="-1"
-  aria-labelledby="exampleModalLabel"
+  aria-labelledby="rentModalLabel"
   aria-hidden="true"
 >
   <div class="modal-dialog">
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">
-           Rent the Car
+        <h5 class="modal-title" id="rentModalLabel">
+           Rent
         </h5>
         <button
           type="button"
@@ -33,7 +33,7 @@
 
       <div class="modal-body">
           
-          <label for="example-date-input" class="col-4 col-form-label"
+          <label for="rent-date-input" class="col-4 col-form-label"
           >Daily Price:</label>
           <div class="form-group row mb-2">
           <div class="col-8">
@@ -47,7 +47,7 @@
           </div>
         </div>
 
-        <label for="example-date-input" class="col-4 col-form-label"
+        <label for="rent-date-input" class="col-4 col-form-label"
         >Customer :</label>
         <div class="form-group row mb-2">
           <div class="col-8">
@@ -61,64 +61,41 @@
           </div>
         </div>
 
-        <label for="example-date-input" class="col-4 col-form-label"
+        <label for="rent-date-input" class="col-4 col-form-label"
         >Rent Date:</label>
         <div class="form-group row mb-2">
           <div class="col-8">
             <input
               class="form-control"
-              min="{{ getRentMinDate() }}"
-              value="{{ getRentMinDate() }}"
+              min="{{ getDate(1) }}"
+              value="{{ getDate(1) }}"
               type="date"
               [(ngModel)]="rentDate"
             />
           </div>
         </div>
 
-        <label for="example-date-input" class="col-4 col-form-label"
+        <label for="rent-date-input" class="col-4 col-form-label"
         >Return Date:</label>
         <div class="form-group row">
           <div class="col-8">
             <input
               class="form-control"
               type="date"
-              min="{{ getReturnMinDate() }}"
-              value="{{ getReturnMinDate() }}"
+              min="{{ getDate(2) }}"
+              value="{{ getDate(2) }}"
               [(ngModel)]="returnDate"
             />
           </div>
         </div>
 
       </div>
-
       <div class="modal-footer">
-        <button data-bs-dismiss="modal" (click)="add()" type="button" class="btn btn-info">
+        <button data-bs-dismiss="modal" (click)="add()" type="button" class="btn btn-outline-success">
           Rent
         </button>
-
       </div>
-
     </div>
   </div>
 </div>
 
-<!-- <table *ngIf="dataLoaded==true" class="table table-striped m-4">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Customer</th>
-        <th scope="col">brandName</th>
-        <th scope="col">rentDate</th>
-        <th scope="col">returnDate</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let rental of rentals" >
-        <th scope="row">{{rental.id}}</th>
-        <td>{{rental.userName}}</td>
-        <td>{{rental.brandName}}</td>
-        <td>{{rental.rentDate }}</td>
-        <td>{{(rental.returnDate == null)? "Not yet delivered!": rental.returnDate}}</td>
-      </tr>
-    </tbody>
-  </table> -->

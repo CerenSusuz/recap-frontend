@@ -1,13 +1,6 @@
 <div class="card">
   <div class="card-body">
 
-    <div class="d-grid gap-2 mb-2" *ngIf="car && car.status == true">
-      <app-rental [car]="car"></app-rental>
-  </div>
-  <div class="d-grid gap-2 mb-2" *ngIf="car && car.status == false">
-      <div class="alert alert-danger">!the car not available!</div>
-  </div>
-
     <div
       id="carouselExampleIndicators"
       class="carousel slide"
@@ -111,7 +104,11 @@
         </tr>
       </tbody>
     </table>
-    
+
+    <div class="d-grid gap-2 m-2" *ngIf="car ">
+      <app-rental [car]="car"></app-rental>
+  </div>
+
   </div>
 </div>
 
