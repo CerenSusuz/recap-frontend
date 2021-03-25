@@ -31,7 +31,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/CerenSusuz/RentACarProject/blob/main/LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/CerenSusuz/recap-frontend/blob/main/LICENSE.md) file for details
 
 ## 📫 How to Reach Me
 
