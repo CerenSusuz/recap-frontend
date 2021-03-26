@@ -1,91 +1,54 @@
 <div class="d-grid gap-2">
-  <button
-    type="button"
-    class="btn btn-outline-success"
-    data-bs-toggle="modal"
-    data-bs-target="#rentModal"
-  >
-  Rent It
+  <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#rentModal">
+    Rent It
   </button>
 </div>
 
-<div
-  class="modal fade"
-  id="rentModal"
-  tabindex="-1"
-  aria-labelledby="rentModalLabel"
-  aria-hidden="true"
->
+<div class="modal fade" id="rentModal" tabindex="-1" aria-labelledby="rentModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 
       <div class="modal-header">
         <h5 class="modal-title" id="rentModalLabel">
-           Rent
+          Rent
         </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body">
-          
-          <label for="rent-date-input" class="col-4 col-form-label"
-          >Daily Price:</label>
-          <div class="form-group row mb-2">
+
+        <label for="rent-date-input" class="col-4 col-form-label">Daily Price:</label>
+        <div class="form-group row mb-2">
           <div class="col-8">
-            <input
-              id="dailyPrice"
-              type="text"
-              disabled="disabled"
-              class="form-control"
-              [value]="car.dailyPrice | currency "
-            />
+            <input id="dailyPrice" type="text" disabled="disabled" class="form-control"
+              [value]="car.dailyPrice | currency " />
           </div>
         </div>
 
-        <label for="rent-date-input" class="col-4 col-form-label"
-        >Customer :</label>
+        <label for="rent-date-input" class="col-4 col-form-label">Customer :</label>
         <div class="form-group row mb-2">
           <div class="col-8">
             <select class="form-select" [(ngModel)]="customerId">
-              <option [value]="customer.id"
-                *ngFor="let customer of customers"
-              >
-              {{ customer.companyName }}
+              <option [value]="customer.id" *ngFor="let customer of customers">
+                {{ customer.companyName }}
               </option>
             </select>
           </div>
         </div>
 
-        <label for="rent-date-input" class="col-4 col-form-label"
-        >Rent Date:</label>
+        <label for="rent-date-input" class="col-4 col-form-label">Rent Date:</label>
         <div class="form-group row mb-2">
           <div class="col-8">
-            <input
-              class="form-control"
-              min="{{ getDate(1) }}"
-              value="{{ getDate(1) }}"
-              type="date"
-              [(ngModel)]="rentDate"
-            />
+            <input class="form-control" min="{{ getDate(1) }}" value="{{ getDate(1) }}" type="date"
+              [(ngModel)]="rentDate" />
           </div>
         </div>
 
-        <label for="rent-date-input" class="col-4 col-form-label"
-        >Return Date:</label>
+        <label for="rent-date-input" class="col-4 col-form-label">Return Date:</label>
         <div class="form-group row">
           <div class="col-8">
-            <input
-              class="form-control"
-              type="date"
-              min="{{ getDate(2) }}"
-              value="{{ getDate(2) }}"
-              [(ngModel)]="returnDate"
-            />
+            <input class="form-control" type="date" min="{{ getDate(2) }}" value="{{ getDate(2) }}"
+              [(ngModel)]="returnDate" />
           </div>
         </div>
 
@@ -98,4 +61,3 @@
     </div>
   </div>
 </div>
-
