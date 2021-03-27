@@ -6,7 +6,6 @@ import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer';
 import { Car } from 'src/app/models/car';
 import { RentalService } from 'src/app/services/rental.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-rental',
@@ -16,7 +15,6 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 
 export class RentalComponent implements OnInit {
 
-  rentalAddForm : FormGroup;
 
   rentals:Rental[] = [];
   customers:Customer[];
@@ -52,16 +50,13 @@ export class RentalComponent implements OnInit {
   }
 
   add(){   
-    let rental:Rental = 
+      let rental:Rental = 
       {
         carID: this.car.id,
         customerID: parseInt(this.customerId.toString()),
         rentDate: this.rentDate,
         returnDate: this.returnDate
       }
-        this.rentalService.add(rental).subscribe(data=>{
-        this.toastr.success("Rent Process OK!");
-        })
         this.router.navigate(['/payment', JSON.stringify(rental)]);
     }
 }

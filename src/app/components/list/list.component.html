@@ -39,3 +39,20 @@
   </tbody>
 </table>
 
+<!-- COLORS -->
+
+<table *ngIf="colors" class="table m-4">
+  <thead>
+    <tr>
+      <th scope="col" style="background-color: rgb(148, 204, 223); border-radius: 10px">Colors</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let color of colors" (click)="setCurrentColor(color)" routerLink="/color/update/{{color.colorId}}"
+      [class]="getColorClass(color)">
+      <td>{{ color.name | uppercase }}</td>
+      <td><button type="button" class="btn btn-success">UPDATE</button></td>
+    </tr>
+  </tbody>
+</table>
+

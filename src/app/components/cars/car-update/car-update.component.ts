@@ -58,7 +58,15 @@ export class CarUpdateComponent implements OnInit {
       console.log(car);
       this.carService.update(car).subscribe(response=>{
         this.toastr.success("UPDATE OK")
-      })}else{
+      },responseError=>{
+        if(responseError.error.Errors>0){
+          for (let i = 0; i < responseError.error.Errors ; i++) {
+            this.toastr.error(responseError.error.Errors[i].ErrorMessage);
+          }
+        }
+      })
+    
+    }else{
       this.toastr.error("Update Error")
     }
   }

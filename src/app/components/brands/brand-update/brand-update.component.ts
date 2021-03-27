@@ -24,7 +24,9 @@ export class BrandUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
       if(params["brandId"]){
-        this.brandId=params["id"];    
+        this.brandId=params["id"];
+        this.createUpdateForm(params["id"]);
+        this.getBrandById(params["id"]);
       }
     })
   }

@@ -41,7 +41,7 @@ export class BrandAddComponent implements OnInit {
       })
     }
     else{
-      this.toastr.error("Form Error")
+      this.toastr.error("Add Error")
     }
 
   }

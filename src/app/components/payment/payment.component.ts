@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { PaymentService } from 'src/app/services/payment.service';
 import { Rental } from 'src/app/models/rental';
 import { Car } from 'src/app/models/car';
-import { Payment } from 'src/app/models/payment';
+import { RentalService } from 'src/app/services/rental.service';
 
 @Component({
   selector: 'app-payment',
@@ -16,13 +16,14 @@ export class PaymentComponent implements OnInit {
 
   rental:Rental;
   car:Car;
-  amount:number = 0;
+  amount:number;
 
   constructor(private activatedRoute:ActivatedRoute,
     private carService:CarService,
     private router:Router,
     private toastr: ToastrService, 
-    private paymentService:PaymentService
+    private paymentService:PaymentService,
+    private rentalService:RentalService
 
     ) { }
 
@@ -62,8 +63,10 @@ export class PaymentComponent implements OnInit {
     }
   }
 
-  //payment test not real payment process
   payment(){
+    this.rentalService.add(this.rental).subscribe(data=>{
+      this.toastr.success("Rent Process OK!");
+      })
     this.paymentService.payment().subscribe(response => {
       this.toastr.success("Payment Successfully");
     })
