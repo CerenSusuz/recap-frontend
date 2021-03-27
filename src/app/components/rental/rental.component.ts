@@ -62,7 +62,6 @@ export class RentalComponent implements OnInit {
         this.rentalService.add(rental).subscribe(data=>{
         this.toastr.success("Rent Process OK!");
         })
-
         this.router.navigate(['/payment', JSON.stringify(rental)]);
     }
 }

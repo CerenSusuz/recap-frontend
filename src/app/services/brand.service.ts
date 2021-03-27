@@ -5,13 +5,13 @@ import { environment } from 'src/environments/environment';
 import { ListResponseModel } from '../models/listResponseModel';
 import { Brand } from '../models/brand';
 import { ResponseModel } from '../models/responseModel';
+import { ItemResponseModel } from '../models/itemResponseModel';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class BrandService {
-
   apiURL = environment.apiURL;
 
   constructor(private httpClient:HttpClient) { }
@@ -22,12 +22,24 @@ export class BrandService {
     .get<ListResponseModel<Brand>>(newUrl);
   }
 
-  getBrandById(id: number): Observable<ListResponseModel<Brand>> {
+  getBrandById(id: number): Observable<ItemResponseModel<Brand>> {
     let newUrl = this.apiURL+'brands/getbyid'+id;
-    return this.httpClient.get<ListResponseModel<Brand>>(newUrl);
+    return this.httpClient.get<ItemResponseModel<Brand>>(newUrl);
   }
 
   add(brand:Brand):Observable<ResponseModel>{
-    return this.httpClient.post<ResponseModel>(this.apiURL+"brands/add",brand);
+    let newUrl = this.apiURL+"brands/add";
+    return this.httpClient.post<ResponseModel>(newUrl,brand);
   }
+
+  update(brand:Brand):Observable<ResponseModel>{
+    let newUrl= this.apiURL+"brands/update";
+    return this.httpClient.post<ResponseModel>(newUrl,brand);
+  }
+
+  delete(brand:Brand):Observable<ResponseModel>{
+    let newUrl= this.apiURL+"brands/delete";
+    return this.httpClient.post<ResponseModel>(newUrl,brand);
+  }
+
 }

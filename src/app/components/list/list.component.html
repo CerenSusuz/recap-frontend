@@ -1,0 +1,41 @@
+<!-- CARS -->
+<table *ngIf="cars" class="table m-4">
+  <thead>
+    <tr>
+      <th scope="col" style="background-color: rgb(174, 204, 214); border-radius: 10px">Brand</th>
+      <th scope="col" style="background-color: rgb(148, 199, 218); border-radius: 10px">Color</th>
+      <th scope="col" style="background-color: rgb(146, 214, 236); border-radius: 10px">Model Year</th>
+      <th scope="col" style="background-color: rgb(116, 207, 238); border-radius: 10px">Daily Price</th>
+      <th scope="col" style="background-color: rgb(98, 217, 250); border-radius: 10px">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars" (click)="setCurrentCar(car)" routerLink="/car/update/{{car.id}}"
+      [class]="getCarClass(car)">
+      <td>{{ car.brandName | uppercase }}</td>
+      <td>{{ car.colorName}}</td>
+      <td>{{ car.modelYear }}</td>
+      <td>{{ car.dailyPrice | currency }}</td>
+      <td>{{ car.description }}</td>
+      <td><button type="button" class="btn btn-success">UPDATE</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- BRANDS -->
+
+<table *ngIf="brands" class="table m-4">
+  <thead>
+    <tr>
+      <th scope="col" style="background-color: rgb(174, 204, 214); border-radius: 10px">Brands</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let brand of brands" (click)="setCurrentBrand(brand)" routerLink="/brand/update/{{brand.brandId}}"
+      [class]="getBrandClass(brand)">
+      <td>{{ brand.name | uppercase }}</td>
+      <td><button type="button" class="btn btn-success">UPDATE</button></td>
+    </tr>
+  </tbody>
+</table>
+
