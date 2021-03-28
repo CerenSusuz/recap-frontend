@@ -58,4 +58,5 @@ export class CarFilterComponent implements OnInit {
       return false;
     }
   }
+
 }

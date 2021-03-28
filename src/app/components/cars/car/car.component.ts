@@ -3,7 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Brand } from 'src/app/models/brand';
 import { Car } from 'src/app/models/car';
 import { Color } from 'src/app/models/color';
+import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
+import { ColorService } from 'src/app/services/color.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -26,6 +28,8 @@ dataLoaded = false;
 basePath= environment.baseURL;
 
   constructor(
+    private brandService: BrandService,
+    private colorService: ColorService,
     private carService:CarService,
     private activatedRoute:ActivatedRoute
     ) { }
@@ -38,8 +42,12 @@ basePath= environment.baseURL;
       }else if(params["colorId"]){
         this.getCarsByColor(params["colorId"]);
       }else if(params["brandId"] && params["colorId"]){
+        console.log(params["colorId"])
+        console.log(params["brandId"])
         this.getCarsByBrandandColor(params["brandId"],params["colorId"]);
       }else{
+        this.getBrands();
+        this.getColors();
         this.getCars();
       }
     })
@@ -51,6 +59,40 @@ basePath= environment.baseURL;
       this.cars = response.data,
       this.dataLoaded = true
     })
+  }
+
+  getBrands() {
+    this.brandService.getBrands().subscribe((response) => {
+      this.brands = response.data;
+    });
+  }
+
+  getColors() {
+    this.colorService.getColors().subscribe((response) => {
+      this.colors = response.data;
+    });
+  }
+
+  getSelectedBrand(brandId: number) {
+    if (this.brandFilter == brandId)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+  
+  getSelectedColor(colorId: number) {
+    if (this.colorFilter == colorId)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
   }
 
   getCarsByBrand(brandId:number){
@@ -81,9 +123,9 @@ basePath= environment.baseURL;
   }
   
   getCarsByBrandandColor(brandId:number, colorId: number) {
+    console.log(brandId)
     this.carService.getCarsByBrandAndColor(brandId,colorId).subscribe(response => {
-      this.cars = response.data,
-      this.dataLoaded=true;
+      this.cars = response.data
     })
     
   }

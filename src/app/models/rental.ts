@@ -4,5 +4,7 @@ export interface Rental{
     customerID:number;
     rentDate:Date;
     returnDate?:Date;
+    rentBeginDate:Date;
+    rentEndDate?:Date;
     
 }

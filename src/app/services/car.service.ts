@@ -39,7 +39,7 @@ export class CarService {
   }
 
   getCarsByBrandAndColor(brandId:number,colorId:number):Observable<ListResponseModel<Car>>{
-    let newPath = environment.apiURL +'cars/getcarsbybrandandcolor?brandId'+brandId+'&colorId'+colorId;
+    let newPath = this.apiURL +'cars/getcarsbybrandandcolor?brandId'+brandId+'&colorId'+colorId;
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
 
@@ -47,9 +47,9 @@ export class CarService {
     return this.httpClient.post<ResponseModel>(this.apiURL+"cars/add",car);
   }
 
-  update(car:Car):Observable<ItemResponseModel<Car>>{
+  update(car:Car):Observable<ResponseModel>{
     console.log(car);
-    return this.httpClient.post<ItemResponseModel<Car>>(this.apiURL+"cars/update",car);
+    return this.httpClient.post<ResponseModel>(this.apiURL+"cars/update",car);
   }
 
   delete(car:Car):Observable<ResponseModel>{

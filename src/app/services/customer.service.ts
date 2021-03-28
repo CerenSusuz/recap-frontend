@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Customer } from '../models/customer';
 import { ItemResponseModel } from '../models/itemResponseModel';
 import { ListResponseModel } from '../models/listResponseModel';
+import { ResponseModel } from '../models/responseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,20 @@ export class CustomerService {
   getCustomerById(id:number):Observable<ItemResponseModel<Customer>>{
     let path =this.apiURL+'customers/getbyid?id='+id;
     return this.httpClient.get<ItemResponseModel<Customer>>(path);
+  }
+
+  add(customer:Customer):Observable<ResponseModel>{
+    let newPath = this.apiURL + "customers/add";
+    return this.httpClient.post<ResponseModel>(newPath,customer)
+  }
+
+  update(customer:Customer):Observable<ResponseModel>{
+    let newPath = this.apiURL + "customers/update";
+    return this.httpClient.post<ResponseModel>(newPath,customer)
+  }
+
+  delete(customer:Customer):Observable<ResponseModel>{
+    let newPath = this.apiURL + "customers/delete";
+    return this.httpClient.post<ResponseModel>(newPath,customer)
   }
 }

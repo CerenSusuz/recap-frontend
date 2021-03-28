@@ -22,6 +22,8 @@ export class RentalComponent implements OnInit {
   customerId:number;
   rentDate:Date;
   returnDate:Date;
+  rentBeginDate:Date;
+  rentEndDate:Date;
   
   @Input() car:Car;
   
@@ -55,7 +57,9 @@ export class RentalComponent implements OnInit {
         carID: this.car.id,
         customerID: parseInt(this.customerId.toString()),
         rentDate: this.rentDate,
-        returnDate: this.returnDate
+        returnDate: this.returnDate,
+        rentBeginDate:this.rentBeginDate,
+        rentEndDate:this.rentEndDate
       }
         this.router.navigate(['/payment', JSON.stringify(rental)]);
     }

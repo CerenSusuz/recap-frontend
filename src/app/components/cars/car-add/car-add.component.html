@@ -11,23 +11,29 @@
                 <form [formGroup]="carAddForm">
 
                     <div class="mb-2">
-                        <label for="brandId">brandId</label>
+                        <label for="brandName">Brand</label>
                         <div class="form-group">
-                            <input type="number" id="brandId" formControlName="brandId" class="form-control"
-                                placeholder="brandId" />
+                            <select class="form-select">
+                                <option [value]="brand.brandId" *ngFor="let brand of brands">
+                                  {{ brand.name }}
+                                </option>
+                              </select>
                         </div>
                     </div>
 
                     <div class="mb-2">
-                        <label for="colorId">colorId</label>
+                        <label for="colorName">Color</label>
                         <div class="form-group">
-                            <input type="number" id="colorId" formControlName="colorId" class="form-control"
-                                placeholder="colorId" />
+                            <select class="form-select">
+                                <option [value]="color.colorId" *ngFor="let color of colors">
+                                  {{ color.name }}
+                                </option>
+                              </select>
                         </div>
                     </div>
 
                     <div class="mb-2">
-                        <label for="modelYear">modelYear</label>
+                        <label for="modelYear">Model Year</label>
                         <div class="form-group">
                             <input type="number" id="modelYear" formControlName="modelYear" class="form-control"
                                 placeholder="modelYear" />
@@ -35,7 +41,7 @@
                     </div>
 
                     <div class="mb-2">
-                        <label for="dailyPrice">dailyPrice</label>
+                        <label for="dailyPrice">Daily Price</label>
                         <div class="form-group">
                             <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control"
                                 placeholder="dailyPrice" />
@@ -47,6 +53,14 @@
                         <div class="form-group">
                             <input type="text" id="description" formControlName="description" class="form-control"
                                 placeholder="description" />
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="findexScore">Findex Score</label>
+                        <div class="form-group">
+                            <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control"
+                                placeholder="dailyPrice" />
                         </div>
                     </div>
 

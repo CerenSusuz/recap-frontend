@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
 
 
@@ -12,6 +13,7 @@ import { BrandService } from 'src/app/services/brand.service';
 export class BrandAddComponent implements OnInit {
 
   brandAddForm : FormGroup;
+
   constructor(private formBuilder:FormBuilder,
     private brandService:BrandService,
     private toastr:ToastrService) { }
@@ -29,7 +31,7 @@ export class BrandAddComponent implements OnInit {
   add(){
     if(this.brandAddForm.valid)
     {
-      let brandModel = Object.assign({}, this.brandAddForm.value)
+      let brandModel:Brand = Object.assign({}, this.brandAddForm.value)
       this.brandService.add(brandModel).subscribe(response=>{
         this.toastr.success("Add OK")
       },responseError=>{
