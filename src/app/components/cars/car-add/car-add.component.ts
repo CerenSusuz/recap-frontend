@@ -41,7 +41,8 @@ export class CarAddComponent implements OnInit {
       colorName:["",Validators.required],
       modelYear:["",Validators.required],
       dailyPrice:["",Validators.required],
-      description:["",Validators.required]
+      description:["",Validators.required],
+      minFindexScore:["",Validators.required]
     })
   }
 
@@ -59,11 +60,9 @@ export class CarAddComponent implements OnInit {
 
   add(){
     if(this.carAddForm.valid){
-      this.carAddForm.addControl("brandId",new FormControl(this.carAddForm.get("brandName")?.value.id,Validators.required))
-      this.carAddForm.addControl("colorId",new FormControl(this.carAddForm.get("colorName")?.value.id,Validators.required))
-      let carModel = Object.assign({},this.carAddForm.value)
+     let carModel = Object.assign({},this.carAddForm.value)
+      console.log(carModel);
       this.carService.add(carModel).subscribe(response=>{
-        console.log(carModel);
         this.toastr.success("Add OK")
       },responseError=>{
         if(responseError.error.ValidationErrors.length>0){

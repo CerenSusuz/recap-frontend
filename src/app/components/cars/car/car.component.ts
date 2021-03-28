@@ -24,7 +24,6 @@ currentCar:Car;
 brandFilter: number;
 colorFilter: number;
 
-dataLoaded = false;
 basePath= environment.baseURL;
 
   constructor(
@@ -35,19 +34,16 @@ basePath= environment.baseURL;
     ) { }
 
   ngOnInit(): void {
+    this.getBrands();
+    this.getColors();
     this.activatedRoute.params.subscribe(params=>{
-
       if(params["brandId"]){
         this.getCarsByBrand(params["brandId"]);
       }else if(params["colorId"]){
-        this.getCarsByColor(params["colorId"]);
-      }else if(params["brandId"] && params["colorId"]){
-        console.log(params["colorId"])
-        console.log(params["brandId"])
-        this.getCarsByBrandandColor(params["brandId"],params["colorId"]);
+         this.getCarsByColor(params["colorId"]);
+      }else if(params["selectedBrandId"] && params["selectedColorId"]){
+        this.getCarsByBrandandColor(params["selectedBrandId"],params["selectedColorId"]);
       }else{
-        this.getBrands();
-        this.getColors();
         this.getCars();
       }
     })
@@ -56,8 +52,7 @@ basePath= environment.baseURL;
 
   getCars(){
     this.carService.getCars().subscribe(response => {
-      this.cars = response.data,
-      this.dataLoaded = true
+      this.cars = response.data
     })
   }
 
@@ -97,15 +92,13 @@ basePath= environment.baseURL;
 
   getCarsByBrand(brandId:number){
     this.carService.getCarsByBrand(brandId).subscribe(response => {
-      this.cars = response.data,
-      this.dataLoaded = true
+      this.cars = response.data
     })
   }
 
   getCarsByColor(colorId:number){
     this.carService.getCarsByColor(colorId).subscribe(response => {
-      this.cars = response.data,
-      this.dataLoaded = true
+      this.cars = response.data
     })
   }
   
@@ -123,12 +116,21 @@ basePath= environment.baseURL;
   }
   
   getCarsByBrandandColor(brandId:number, colorId: number) {
-    console.log(brandId)
-    this.carService.getCarsByBrandAndColor(brandId,colorId).subscribe(response => {
+      this.carService.getCarsByBrandAndColor(brandId,colorId).subscribe(response => {
       this.cars = response.data
     })
     
   }
+
+  deneme(brandId:number,colorId:number){
+    this.brandFilter=brandId;
+    this.colorFilter=colorId;
+  }
+
+
+
+
+
 
 }
 

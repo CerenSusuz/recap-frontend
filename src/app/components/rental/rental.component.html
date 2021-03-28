@@ -28,7 +28,8 @@
         <label for="customer" class="col-4 col-form-label">Customer :</label>
         <div class="form-group row mb-2">
           <div class="col-8">
-            <select class="form-select" [(ngModel)]="customerId">
+            <select class="form-select" >
+              <option selected>Customers</option>
               <option [value]="customer.id" *ngFor="let customer of customers">
                 {{ customer.companyName }}
               </option>
@@ -54,7 +55,7 @@
 
       </div>
       <div class="modal-footer">
-        <button data-bs-dismiss="modal" (click)="add()" type="button" class="btn btn-outline-success">
+        <button data-bs-dismiss="modal" (click)="create()" type="button" class="btn btn-outline-success">
           Rent
         </button>
       </div>

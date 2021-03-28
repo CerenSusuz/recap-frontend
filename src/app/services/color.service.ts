@@ -23,7 +23,7 @@ export class ColorService {
   }
 
   getColorById(id: number): Observable<ItemResponseModel<Color>> {
-    let newUrl = this.apiURL+'colors/getbyid'+id
+    let newUrl = this.apiURL+'colors/getbyid?id='+id
     return this.httpClient.get<ItemResponseModel<Color>>(newUrl);
   }
 

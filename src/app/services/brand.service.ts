@@ -22,8 +22,8 @@ export class BrandService {
     .get<ListResponseModel<Brand>>(newUrl);
   }
 
-  getBrandById(id: number): Observable<ItemResponseModel<Brand>> {
-    let newUrl = this.apiURL+'brands/getbyid'+id;
+  getBrandById(brandId: number): Observable<ItemResponseModel<Brand>> {
+    let newUrl = this.apiURL+'brands/getbyid?id='+brandId;
     return this.httpClient.get<ItemResponseModel<Brand>>(newUrl);
   }
 

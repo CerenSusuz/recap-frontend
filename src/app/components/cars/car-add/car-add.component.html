@@ -11,9 +11,9 @@
                 <form [formGroup]="carAddForm">
 
                     <div class="mb-2">
-                        <label for="brandName">Brand</label>
                         <div class="form-group">
                             <select class="form-select">
+                                <option selected>Brands</option>
                                 <option [value]="brand.brandId" *ngFor="let brand of brands">
                                   {{ brand.name }}
                                 </option>
@@ -22,9 +22,9 @@
                     </div>
 
                     <div class="mb-2">
-                        <label for="colorName">Color</label>
                         <div class="form-group">
                             <select class="form-select">
+                                <option selected>Colors</option>
                                 <option [value]="color.colorId" *ngFor="let color of colors">
                                   {{ color.name }}
                                 </option>
@@ -35,32 +35,28 @@
                     <div class="mb-2">
                         <label for="modelYear">Model Year</label>
                         <div class="form-group">
-                            <input type="number" id="modelYear" formControlName="modelYear" class="form-control"
-                                placeholder="modelYear" />
+                            <input type="number" id="modelYear" formControlName="modelYear" class="form-control"/>
                         </div>
                     </div>
 
                     <div class="mb-2">
                         <label for="dailyPrice">Daily Price</label>
                         <div class="form-group">
-                            <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control"
-                                placeholder="dailyPrice" />
+                            <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control" />
                         </div>
                     </div>
 
                     <div class="mb-2">
-                        <label for="description">description</label>
+                        <label for="description">Description</label>
                         <div class="form-group">
-                            <input type="text" id="description" formControlName="description" class="form-control"
-                                placeholder="description" />
+                            <input type="text" id="description" formControlName="description" class="form-control"/>
                         </div>
                     </div>
 
                     <div class="mb-2">
-                        <label for="findexScore">Findex Score</label>
+                        <label for="minFindexScore">Findex Score</label>
                         <div class="form-group">
-                            <input type="number" id="dailyPrice" formControlName="dailyPrice" class="form-control"
-                                placeholder="dailyPrice" />
+                            <input type="number" id="minFindexScore" formControlName="minFindexScore" class="form-control"/>
                         </div>
                     </div>
 
@@ -80,7 +76,6 @@
 
 
             </div>
-
 
             <div class="card-footer">
                 <button class="btn btn-outline-info float-end" type="button" (click)="add()">

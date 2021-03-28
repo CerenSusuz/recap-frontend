@@ -14,7 +14,6 @@ export class ColorUpdateComponent implements OnInit {
 
   colorUpdateForm:FormGroup;
   color:Color;
-  colorId:number;
 
   constructor(private formBuilder:FormBuilder,
     private colorService:ColorService,
@@ -23,9 +22,10 @@ export class ColorUpdateComponent implements OnInit {
      {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params=>{
-      if(params["colorId"]){
-        this.colorId=params["id"];
+    this.createUpdateForm();
+    this.activatedRoute.params.subscribe(parameter=>{
+      if(parameter["colorId"]){
+        this.getColorById(parameter["colorId"]);
       }
     })
   }
@@ -36,9 +36,9 @@ export class ColorUpdateComponent implements OnInit {
     })
   }
 
-  createUpdateForm(colorId:number){
+  createUpdateForm(){
     this.colorUpdateForm = this.formBuilder.group({
-      colorName:["",Validators.required]
+      name:["",Validators.required]
     })
   }
 
@@ -46,11 +46,11 @@ export class ColorUpdateComponent implements OnInit {
   update(){
     if(this.colorUpdateForm.valid){
       let color = Object.assign({},this.colorUpdateForm.value)
-      color.colorId = this.colorId;
       console.log(color);
+      color.colorId=this.color.colorId;
       this.colorService.update(color).subscribe(response=>{
         this.toastr.success("UPDATE OK");
-      })
+      });
     }else{
       this.toastr.error("UPDATE ERROR")
     }

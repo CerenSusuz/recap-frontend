@@ -5,7 +5,6 @@ import { BrandUpdateComponent } from './components/brands/brand-update/brand-upd
 import { BrandComponent } from './components/brands/brand/brand.component';
 import { CarAddComponent } from './components/cars/car-add/car-add.component';
 import { CarDetailComponent } from './components/cars/car-detail/car-detail.component';
-import { CarUpdateComponent } from './components/cars/car-update/car-update.component';
 import { CarComponent } from './components/cars/car/car.component';
 import { ColorAddComponent } from './components/colors/color-add/color-add.component';
 import { ColorUpdateComponent } from './components/colors/color-update/color-update.component';
@@ -30,14 +29,13 @@ const routes: Routes = [
   {path:"rentals",component:RentalComponent},
   {path:"payment/:rental",component:PaymentComponent},
   
-  {path:"cars/filter/brand/:brandId/color/:colorId",component:CarComponent},
+  {path:"cars/filter/brand/:selectedBrandId/color/:selectedColorId",component:CarComponent},
   
   {path:"car/add",component:CarAddComponent},
   {path:"color/add",component:ColorAddComponent},
   {path:"brand/add",component:BrandAddComponent},
 
   {path:"list",component:ListComponent},
-  {path:"car/update/:id",component:CarUpdateComponent},
   {path:"brand/update/:brandId",component:BrandUpdateComponent},
   {path:"color/update/:colorId",component:ColorUpdateComponent}
 

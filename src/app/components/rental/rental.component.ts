@@ -51,15 +51,13 @@ export class RentalComponent implements OnInit {
     return today.toISOString().slice(0,10)
   }
 
-  add(){   
+  create(){   
       let rental:Rental = 
       {
         carID: this.car.id,
-        customerID: parseInt(this.customerId.toString()),
+        customerID: this.customerId,
         rentDate: this.rentDate,
-        returnDate: this.returnDate,
-        rentBeginDate:this.rentBeginDate,
-        rentEndDate:this.rentEndDate
+        returnDate: this.returnDate
       }
         this.router.navigate(['/payment', JSON.stringify(rental)]);
     }

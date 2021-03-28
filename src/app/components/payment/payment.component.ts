@@ -64,6 +64,7 @@ export class PaymentComponent implements OnInit {
   }
 
   payment(){
+    console.log(this.rental);
     this.rentalService.add(this.rental).subscribe(data=>{
       this.toastr.success("Rent Process OK!");
       })

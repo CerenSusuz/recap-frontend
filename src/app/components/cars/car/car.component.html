@@ -1,29 +1,26 @@
-<div
-  *ngIf="dataLoaded == false"
-  class="spinner-border text-info m-4"
-  role="status"
-></div>
-
 <div class="row m-2">
-  <div class="col col-4">
-      <select [(ngModel)]="brandFilter"  class="form-select" aria-label="Default select example">
-          <option *ngFor="let brand of brands" [value]="brand.brandId" [selected]="getSelectedBrand(brand.brandId)">{{brand.name}}</option>
-        </select>
-  </div>
-  <div class="col col-4">
-      <select [(ngModel)]="colorFilter" class="form-select" aria-label="Default select example">
-          <option *ngFor="let color of colors" [value]="color.colorId" [selected]="getSelectedColor(color.colorId)">{{color.name}}</option>
-        </select>
-  </div>
-  <div class="col col-2">
-      <a routerLink="/cars/filter/brand/{{brandFilter}}/color/{{colorFilter}}" class="btn btn-info">Filter</a>
-      </div>
-      <div class="col col-2">
-          <a routerLink="/cars" class="btn btn-danger">Clear All</a>
-      </div>
+
+
+  <div class="row m-2">
+    <div class="col col-4">
+        <select [(ngModel)]="brandFilter"  class="form-select" aria-label="Default select example">
+            <option *ngFor="let brand of brands" [value]="brand.brandId" [selected]="getSelectedBrand(brand.brandId)">{{brand.name}}</option>
+          </select>
+    </div>
+    <div class="col col-4">
+        <select [(ngModel)]="colorFilter" class="form-select" aria-label="Default select example">
+            <option *ngFor="let color of colors" [value]="color.colorId" [selected]="getSelectedColor(color.colorId)">{{color.name}}</option>
+          </select>
+    </div>
+    <div class="col col-2">
+        <a routerLink="/cars/filter/brand/{{brandFilter}}/color/{{colorFilter}}" class="btn btn-info">Filter</a>
+        </div>
+        <div class="col col-2">
+            <a routerLink="/cars" class="btn btn-danger">Clear All</a>
+        </div>
 </div>
 
-<table *ngIf="cars && dataLoaded == true" class="table m-4">
+<table *ngIf="cars" class="table m-4">
   <thead>
     <tr>
       <th scope="col" style="background-color: rgb(174, 204, 214); border-radius: 10px">Brand</th>

@@ -14,7 +14,6 @@ export class BrandUpdateComponent implements OnInit {
 
   brandUpdateForm:FormGroup;
   brand:Brand;
-  brandId:number;
 
   constructor(private formBuilder:FormBuilder,
     private brandService:BrandService,
@@ -22,39 +21,36 @@ export class BrandUpdateComponent implements OnInit {
     private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params=>{
-      if(params["brandId"]){
-        this.brandId=params["id"];
-        this.createUpdateForm(params["id"]);
-        this.getBrandById(params["id"]);
+    this.createBrandUpdateForm();
+    this.activatedRoute.params.subscribe((parameter) => {
+      if (parameter['brandId']) {
+        this.getBrandById(parameter['brandId']);
       }
-    })
+    });
   }
 
-  getBrandById(brandId:number){
-    this.brandService.getBrandById(brandId).subscribe(response => {
-      this.brand = response.data;
-    })
+  getBrandById(id: number) {
+    this.brandService.getBrandById(id).subscribe((response) => {
+        this.brand = response.data;
+      }
+    );
   }
 
-  createUpdateForm(brandId:number){
+  createBrandUpdateForm() {
     this.brandUpdateForm = this.formBuilder.group({
-      name:["",Validators.required]
-    })
+      name: ['', Validators.required],
+    });
   }
 
-  update(){
-    if(this.brandUpdateForm.valid){
-      let brand = Object.assign({},this.brandUpdateForm.value)
-      brand.brandId = this.brandId;
-      console.log(brand);
-      this.brandService.update(brand).subscribe(response=>{
-        this.toastr.success("UPDATE OK");
-      })
+  update() {
+    if (this.brandUpdateForm.valid) {
+      let brand: Brand = this.brandUpdateForm.value;
+      brand.brandId = this.brand.brandId;
+      this.brandService.update(brand).subscribe((response) => {
+          this.toastr.success("UPDATE OK");
+        });
     }else{
-      this.toastr.error("UPDATE ERROR");
+      this.toastr.warning('UPDATE ERROR');
     }
   }
-
-
 }

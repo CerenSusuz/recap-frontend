@@ -9,19 +9,12 @@
             <div class="card-body">
 
                 <form [formGroup]="colorUpdateForm">
-
-                    <div class="mb-2">
-                        <label for="colorName">Color Name</label>
-                        <div class="form-group">
-                            <input type="number" id="colorName" formControlName="colorName" class="form-control"
-                                placeholder="colorName" />
-                        </div>
+                    <div class="mb-3">
+                        <label for="colorNameInput" class="form-label">Color</label>
+                        <input type="text" class="form-control" id="colorNameInput" formControlName="name" />
                     </div>
                 </form>
-                
-            </div>
 
-            <div class="card-footer">
                 <button class="btn btn-outline-info float-end" type="button" (click)="update()">
                     UPDATE
                 </button>
