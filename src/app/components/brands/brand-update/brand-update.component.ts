@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
 import { BrandService } from 'src/app/services/brand.service';
+
 
 @Component({
   selector: 'app-brand-update',
@@ -18,7 +19,8 @@ export class BrandUpdateComponent implements OnInit {
   constructor(private formBuilder:FormBuilder,
     private brandService:BrandService,
     private toastr:ToastrService,
-    private activatedRoute:ActivatedRoute) { }
+    private activatedRoute:ActivatedRoute,
+    private router:Router) { }
 
   ngOnInit(): void {
     this.createBrandUpdateForm();
@@ -48,6 +50,7 @@ export class BrandUpdateComponent implements OnInit {
       brand.brandId = this.brand.brandId;
       this.brandService.update(brand).subscribe((response) => {
           this.toastr.success("UPDATE OK");
+          this.router.navigate(['/list']);
         });
     }else{
       this.toastr.warning('UPDATE ERROR');

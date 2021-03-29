@@ -19,8 +19,6 @@ import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { FilterColorPipePipe } from './pipes/filter-color-pipe.pipe';
 import { FilterBrandPipePipe } from './pipes/filter-brand-pipe.pipe';
 import { PaymentComponent } from './components/payment/payment.component';
-
-import { ToastrModule } from 'ngx-toastr';
 import { BrandAddComponent } from './components/brands/brand-add/brand-add.component';
 import { ColorAddComponent } from './components/colors/color-add/color-add.component';
 import { CarAddComponent } from './components/cars/car-add/car-add.component';
@@ -30,6 +28,9 @@ import { ColorUpdateComponent } from './components/colors/color-update/color-upd
 import { BrandListComponent } from './components/brands/brand-list/brand-list.component';
 import { ColorListComponent } from './components/colors/color-list/color-list.component';
 import { RentalListComponent } from './components/rentals/rental-list/rental-list.component';
+
+import { ToastrModule } from 'ngx-toastr';
+import { CarUpdateComponent } from './components/cars/car-update/car-update.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { RentalListComponent } from './components/rentals/rental-list/rental-lis
     ColorUpdateComponent,
     BrandListComponent,
     ColorListComponent,
-    RentalListComponent
+    RentalListComponent,
+    CarUpdateComponent
   ],
   imports: [
     BrowserModule,

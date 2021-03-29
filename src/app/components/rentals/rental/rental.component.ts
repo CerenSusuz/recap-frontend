@@ -15,7 +15,6 @@ import { RentalService } from 'src/app/services/rental.service';
 
 export class RentalComponent implements OnInit {
 
-
   rentals: Rental[] = [];
   customers: Customer[];
 

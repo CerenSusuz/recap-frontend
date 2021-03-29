@@ -15,7 +15,7 @@ export class RentalService {
   constructor(private httpClient:HttpClient) { }
   
   getRental(): Observable<ListResponseModel<Rental>>{
-    let newPath=this.apiURL+'rentals/getrentaldetails';
+    let newPath=this.apiURL+'rentals/getall';
     return this.httpClient.get<ListResponseModel<Rental>>(newPath);
 
   }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
+import { Car } from 'src/app/models/car';
 import { Color } from 'src/app/models/color';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
@@ -15,37 +16,35 @@ import { ColorService } from 'src/app/services/color.service';
 })
 export class CarAddComponent implements OnInit {
 
-  carAddForm : FormGroup;
+  carAddForm:FormGroup;
 
   brands:Brand[];
-  brandId:number;
-
   colors:Color[];
-  colorId:number;
 
-  constructor(private formBuilder:FormBuilder,
+  constructor(
+    private formBuilder:FormBuilder,
     private carService:CarService,
     private brandService:BrandService,
     private colorService:ColorService,
     private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.createCarAddForm();
+    this.createCarAddForm()
     this.getBrands();
     this.getColors();
   }
 
+
   createCarAddForm(){
-    this.carAddForm = this.formBuilder.group({  
-      brandName:["",Validators.required],
-      colorName:["",Validators.required],
-      modelYear:["",Validators.required],
-      dailyPrice:["",Validators.required],
-      description:["",Validators.required],
+    this.carAddForm = this.formBuilder.group({
+      brandId: ["", Validators.required],
+      colorId: ["", Validators.required],
+      modelYear: ["", Validators.required],
+      dailyPrice: ["", Validators.required],
+      description: ["", Validators.required],
       minFindexScore:["",Validators.required]
     })
   }
-
   getBrands(){
     this.brandService.getBrands().subscribe(response => {
       this.brands = response.data;
@@ -59,23 +58,16 @@ export class CarAddComponent implements OnInit {
   }
 
   add(){
-    if(this.carAddForm.valid){
-     let carModel = Object.assign({},this.carAddForm.value)
-      console.log(carModel);
+    if(this.carAddForm.valid){      
+      let carModel = Object.assign({},this.carAddForm.value)
+      console.log(carModel)
       this.carService.add(carModel).subscribe(response=>{
-        this.toastr.success("Add OK")
+        this.toastr.success(response.message)
       },responseError=>{
-        if(responseError.error.ValidationErrors.length>0){
-          for (let i = 0; i < responseError.error.ValidationErrors.length ; i++) {
-            this.toastr.error(responseError.error.ValidationErrors[i].ErrorMessage);
-          }
-        }
+        this.toastr.success("ADD OK")
       })
-
-    }
-    else{
-      this.toastr.error("Add Error")
-    }
-    
+    }else{
+      this.toastr.error("ERROR")
+    }    
   }
 }

@@ -1,7 +1,7 @@
-<div class="row m-2">
+<div class="row m-2" >
 
 
-  <div class="row m-2">
+  <div class="row m-2" >
     <div class="col col-4">
         <select [(ngModel)]="brandFilter"  class="form-select" aria-label="Default select example">
             <option *ngFor="let brand of brands" [value]="brand.brandId" [selected]="getSelectedBrand(brand.brandId)">{{brand.name}}</option>
@@ -25,10 +25,11 @@
     <tr>
       <th scope="col" style="background-color: rgb(174, 204, 214); border-radius: 10px">Brand</th>
       <th scope="col" style="background-color: rgb(148, 199, 218); border-radius: 10px">Color</th>
-      <th scope="col" style="background-color: rgb(146, 214, 236); border-radius: 10px">Model Year</th>
-      <th scope="col" style="background-color: rgb(116, 207, 238); border-radius: 10px">Daily Price</th>
+      <th scope="col" style="background-color: rgb(125, 215, 245); border-radius: 10px">Model Year</th>
+      <th scope="col" style="background-color: rgb(117, 212, 243); border-radius: 10px">Daily Price</th>
       <th scope="col" style="background-color: rgb(101, 210, 247); border-radius: 10px">Daily Price + VAT</th>
       <th scope="col" style="background-color: rgb(98, 217, 250); border-radius: 10px">Description</th>
+      <th scope="col" style="background-color: rgb(77, 215, 253); border-radius: 10px">Findex Score</th>
     </tr>
   </thead>
   <tbody>
@@ -42,6 +43,7 @@
       <td>{{ car.dailyPrice | currency }}</td>
       <td>{{ car.dailyPrice | vatAdded:8 | currency}}</td>
       <td>{{ car.description }}</td>
+      <td>{{ car.minFindexScore }}</td>
       <td><button type="button" class="btn btn-success">Get Details</button></td>
     </tr>
   </tbody>

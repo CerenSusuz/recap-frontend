@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Color } from 'src/app/models/color';
 import { ColorService } from 'src/app/services/color.service';
@@ -18,7 +18,8 @@ export class ColorUpdateComponent implements OnInit {
   constructor(private formBuilder:FormBuilder,
     private colorService:ColorService,
     private toastr:ToastrService,
-    private activatedRoute:ActivatedRoute)
+    private activatedRoute:ActivatedRoute,
+    private router:Router)
      {}
 
   ngOnInit(): void {
@@ -50,6 +51,7 @@ export class ColorUpdateComponent implements OnInit {
       color.colorId=this.color.colorId;
       this.colorService.update(color).subscribe(response=>{
         this.toastr.success("UPDATE OK");
+        this.router.navigate(['/list']);
       });
     }else{
       this.toastr.error("UPDATE ERROR")

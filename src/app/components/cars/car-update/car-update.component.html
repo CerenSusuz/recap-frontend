@@ -1,9 +1,9 @@
 <div class="card m-2" style="border-radius: 18px; color: darkgreen; border-color: darkolivegreen;">
-    <div class="card-header"><h5 style="color:darkgreen;" class="title font-weight-bold">Add Car</h5></div>
+    <div class="card-header"><h5 style="color:darkgreen;" class="title font-weight-bold">Update Car</h5></div>
   
     <div class="card-body">
   
-      <form [formGroup]="carAddForm">
+      <form [formGroup]="carUpdateForm">
 
         <div class="row">
             
@@ -74,9 +74,9 @@
       </form>
   
     </div>
-  
+
     <div class="card-footer">
-      <button class="btn btn-fill btn-success" (click)="add()">ADD</button>
+      <button class="btn btn-fill btn-success" (click)="update()">UPDATE</button>
     </div>
   
   </div>
