@@ -16,49 +16,53 @@ import { RentalService } from 'src/app/services/rental.service';
 export class RentalComponent implements OnInit {
 
 
-  rentals:Rental[] = [];
-  customers:Customer[];
+  rentals: Rental[] = [];
+  customers: Customer[];
 
-  customerId:number;
-  rentDate:Date;
-  returnDate:Date;
-  rentBeginDate:Date;
-  rentEndDate:Date;
-  
-  @Input() car:Car;
-  
-  
+  customerId: number;
+  rentDate: Date;
+  returnDate: Date;
+  rentBeginDate: Date;
+  rentEndDate: Date;
+
+  @Input() car: Car;
+
+
   constructor(
-    private rentalService:RentalService,
-    private router:Router,
-    private customerService:CustomerService,
+    private rentalService: RentalService,
+    private router: Router,
+    private customerService: CustomerService,
     private toastr: ToastrService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.getCustomer();
   }
 
-  getCustomer(){
+  getCustomer() {
     this.customerService.getCustomer().subscribe(response => {
       this.customers = response.data;
     })
   }
 
-  getDate(day : number){
-    var today  = new Date();
+  getDate(day: number) {
+    var today = new Date();
     today.setDate(today.getDate() + day);
-    return today.toISOString().slice(0,10)
+    return today.toISOString().slice(0, 10)
   }
 
-  create(){   
-      let rental:Rental = 
-      {
-        carID: this.car.id,
-        customerID: this.customerId,
-        rentDate: this.rentDate,
-        returnDate: this.returnDate
-      }
-        this.router.navigate(['/payment', JSON.stringify(rental)]);
+  create() {
+    this.toastr.info("Navigate to  Payment Page");
+    let rental: Rental =
+    {
+      carID: this.car.id,
+      customerID: parseInt(this.customerId.toString()),
+      rentDate: this.rentDate,
+      returnDate: this.returnDate
     }
+    this.rentalService.add(rental).subscribe(repsonse=>{
+      this.toastr.success("RENT OK")
+    })
+    this.router.navigate(['/payment', JSON.stringify(rental)]);
+  }
 }

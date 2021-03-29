@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +13,7 @@ import { BrandComponent } from './components/brands/brand/brand.component';
 import { ColorComponent } from './components/colors/color/color.component';
 import { CarComponent } from './components/cars/car/car.component';
 import { CustomerComponent } from './components/customer/customer.component';
-import { RentalComponent } from './components/rental/rental.component';
+import { RentalComponent } from './components/rentals/rental/rental.component';
 import { CarDetailComponent } from './components/cars/car-detail/car-detail.component';
 import { VatAddedPipe } from './pipes/vat-added.pipe';
 import { FilterColorPipePipe } from './pipes/filter-color-pipe.pipe';
@@ -26,6 +27,9 @@ import { CarAddComponent } from './components/cars/car-add/car-add.component';
 import { BrandUpdateComponent } from './components/brands/brand-update/brand-update.component';
 import { ListComponent } from './components/list/list.component';
 import { ColorUpdateComponent } from './components/colors/color-update/color-update.component';
+import { BrandListComponent } from './components/brands/brand-list/brand-list.component';
+import { ColorListComponent } from './components/colors/color-list/color-list.component';
+import { RentalListComponent } from './components/rentals/rental-list/rental-list.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,10 @@ import { ColorUpdateComponent } from './components/colors/color-update/color-upd
     CarAddComponent,
     BrandUpdateComponent,
     ListComponent,
-    ColorUpdateComponent
+    ColorUpdateComponent,
+    BrandListComponent,
+    ColorListComponent,
+    RentalListComponent
   ],
   imports: [
     BrowserModule,
@@ -55,10 +62,12 @@ import { ColorUpdateComponent } from './components/colors/color-update/color-upd
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass:"toast-bottom-right"
-    })
+    }),
+    FontAwesomeModule
 
   ],
   providers: [],

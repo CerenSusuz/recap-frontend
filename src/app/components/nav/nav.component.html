@@ -7,26 +7,23 @@
       <div class="collapse navbar-collapse m-2" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto ms-5 mb-lg-0 ">
           <li class="nav-item">
-            <a class="nav-link active " aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link active " aria-current="page" routerLink="/homepage">Home</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              All of Them
+              List
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Cars</a></li>
-              <li><a class="dropdown-item" href="#">Customers</a></li>
+              <li><a class="dropdown-item" routerLink="/cars">Cars</a></li>
+              <li><a class="dropdown-item" routerLink="/customers">Customers</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Brands</a></li>
-              <li><a class="dropdown-item" href="#">Colors</a></li>
-              <li><a class="dropdown-item" href="#">Rentals</a></li>
+              <li><a class="dropdown-item" routerLink="/brands">Brands</a></li>
+              <li><a class="dropdown-item" routerLink="/colors">Colors</a></li>
+              <li><a class="dropdown-item" routerLink="/rentals">Rentals</a></li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
           </li>
         </ul>
         <form class="d-flex">

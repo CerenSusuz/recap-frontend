@@ -5,7 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { PaymentService } from 'src/app/services/payment.service';
 import { Rental } from 'src/app/models/rental';
 import { Car } from 'src/app/models/car';
-import { RentalService } from 'src/app/services/rental.service';
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { Payment } from 'src/app/models/payment';
 
 @Component({
   selector: 'app-payment',
@@ -13,6 +14,8 @@ import { RentalService } from 'src/app/services/rental.service';
   styleUrls: ['./payment.component.css']
 })
 export class PaymentComponent implements OnInit {
+
+  faCreditCard:typeof faCreditCard;
 
   rental:Rental;
   car:Car;
@@ -22,8 +25,7 @@ export class PaymentComponent implements OnInit {
     private carService:CarService,
     private router:Router,
     private toastr: ToastrService, 
-    private paymentService:PaymentService,
-    private rentalService:RentalService
+    private paymentService:PaymentService
 
     ) { }
 
@@ -51,26 +53,27 @@ export class PaymentComponent implements OnInit {
 
       let difference = (dateRent.getTime() - dateReturn.getTime());
 
-      let numberOfDays = Math.ceil(difference / (1000 * 3600 * 24));
+      let differenceOfDays = Math.ceil(difference / (1000 * 3600 * 24));
       
-      this.amount = numberOfDays * (this.car.dailyPrice + ( this.car.dailyPrice * 8 / 100));
-      
-      if(this.amount <= 0)
-      {
-         this.router.navigate(['/cars']);
-         this.toastr.error("Payment Error");
+      if(differenceOfDays==0){
+        differenceOfDays=1;
       }
+      
+      this.amount = differenceOfDays * (this.car.dailyPrice + ( this.car.dailyPrice * 8 / 100)); //calculate with VAT
+      
     }
   }
 
   payment(){
-    console.log(this.rental);
-    this.rentalService.add(this.rental).subscribe(data=>{
-      this.toastr.success("Rent Process OK!");
+    if(this.amount>100){
+      let paymentModel:Payment ={
+        amount:this.amount
+      }
+      console.log(paymentModel.amount)
+        this.paymentService.payment(paymentModel).subscribe(response => {
+        this.toastr.success("Payment OK");
       })
-    this.paymentService.payment().subscribe(response => {
-      this.toastr.success("Payment Successfully");
-    })
+    }
   }
 
 }

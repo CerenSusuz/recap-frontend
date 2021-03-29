@@ -1,0 +1,14 @@
+<table *ngIf="brands" class="table table-striped m-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Brand</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let brand of brands">
+        <th scope="row">{{brand.brandId}}</th>
+        <td>{{brand.name}}</td>
+      </tr>
+    </tbody>
+  </table>
