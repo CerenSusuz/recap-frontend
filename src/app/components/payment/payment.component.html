@@ -35,6 +35,8 @@
     
     <div class="card-body">
 
+      <img src="{{imageURL}}/uploads/credit-card.png" alt="No IMG" style="width: 240px;">
+
       <div class="row">
         
         <div class="inputbox mt-3">
@@ -84,7 +86,12 @@
     </div>
     <div class="card-footer">
       <div class="row">
-          <button (click)="payment()" class="btn btn-success"><strong>{{ amount | currency }}  PAY </strong></button>
+          <button (click)="payment()" class="btn btn-success">      
+            <img  src="{{imageURL}}/uploads/yellowCard.png" alt="No IMG" style="width: 40px;">
+            <img  src="{{imageURL}}/uploads/redCard.png" alt="No IMG" style="width: 40px;">
+            <img  src="{{imageURL}}/uploads/blueCard.png" alt="No IMG" style="width: 40px;">
+            <strong>{{ amount | currency }}  PAY </strong>
+          </button>
       </div>
   </div>
   </div>

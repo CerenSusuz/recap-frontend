@@ -9,6 +9,9 @@
           <li class="nav-item">
             <a class="nav-link active " aria-current="page" routerLink="/homepage">Home</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link " aria-current="page" routerLink="/list">Process</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               List
@@ -22,24 +25,8 @@
               <li><a class="dropdown-item" routerLink="/rentals">Rentals</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Add
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" routerLink="/car/add">Cars</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" routerLink="/brand/add">Brands</a></li>
-              <li><a class="dropdown-item" routerLink="/color/add">Colors</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " aria-current="page" routerLink="/list" >Update</a>
-          </li>
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-warning" type="submit">Search</button>
           <div class="d-flex btn-group ps-4" role="group" aria-label="Basic radio toggle button group">
             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
             <label class="btn btn-outline-info" for="btnradio1">Login</label>

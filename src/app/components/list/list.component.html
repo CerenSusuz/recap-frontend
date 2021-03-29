@@ -2,23 +2,29 @@
 <table *ngIf="cars" class="table m-4">
   <thead>
     <tr>
+      <th scope="col" style="background-color: rgb(174, 204, 214); border-radius: 10px">ID</th>
       <th scope="col" style="background-color: rgb(174, 204, 214); border-radius: 10px">Brand</th>
       <th scope="col" style="background-color: rgb(148, 199, 218); border-radius: 10px">Color</th>
       <th scope="col" style="background-color: rgb(146, 214, 236); border-radius: 10px">Model Year</th>
       <th scope="col" style="background-color: rgb(116, 207, 238); border-radius: 10px">Daily Price</th>
       <th scope="col" style="background-color: rgb(98, 217, 250); border-radius: 10px">Description</th>
+      <th scope="col" style="background-color: rgb(89, 204, 236); border-radius: 10px">Findex Score</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let car of cars" (click)="setCurrentCar(car)" routerLink="/car/update/{{car.id}}"
+    <tr *ngFor="let car of cars" (click)="setCurrentCar(car)" 
       [class]="getCarClass(car)">
-      <td>{{ car.brandName | uppercase }}</td>
-      <td>{{ car.colorName}}</td>
+      <td>{{ car.id}}</td>
+      <td>{{ car.brandId}}</td>
+      <td>{{ car.colorId}}</td>
       <td>{{ car.modelYear }}</td>
-      <td>{{ car.dailyPrice | currency }}</td>
+      <td>{{ car.dailyPrice }}</td>
       <td>{{ car.description }}</td>
-      <td><button type="button" class="btn btn-success">UPDATE</button></td>
+      <td>{{ car.minFindexScore }}</td>
+      <td><button routerLink="/car/update/{{car.id}}" type="button" class="btn btn-outline-success">UPDATE</button></td>
+      <td><button (click)="deleteCar(car)" type="button" class="btn btn-outline-danger">DELETE</button></td>
     </tr>
+    <tr scope="col"><button routerLink="/car/add" type="button" class="btn btn-outline-info m-2">ADD</button></tr>
   </tbody>
 </table>
 
@@ -27,32 +33,38 @@
 <table *ngIf="brands" class="table m-4">
   <thead>
     <tr>
-      <th scope="col" style="background-color: rgb(174, 204, 214); border-radius: 10px">Brands</th>
+      <th scope="col" style="background-color: rgb(174, 204, 214); border-radius: 10px">Brand</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let brand of brands" (click)="setCurrentBrand(brand)" routerLink="/brand/update/{{brand.brandId}}"
+    <tr *ngFor="let brand of brands" (click)="setCurrentBrand(brand)"
       [class]="getBrandClass(brand)">
-      <td>{{ brand.name | uppercase }}</td>
-      <td><button type="button" class="btn btn-success">UPDATE</button></td>
+      <td>{{ brand.brandId }}</td>
+      <td>{{ brand.name }}</td>
+      <td><button routerLink="/brand/update/{{brand.brandId}}" type="button" class="btn btn-outline-success">UPDATE</button></td>
+      <td><button (click)="deleteBrand(brand)" type="button" class="btn btn-outline-danger">DELETE</button></td>
     </tr>
+    <tr scope="col"><button routerLink="/brand/add" type="button" class="btn btn-outline-info m-2">ADD</button></tr>
   </tbody>
 </table>
+
 
 <!-- COLORS -->
 
 <table *ngIf="colors" class="table m-4">
   <thead>
     <tr>
-      <th scope="col" style="background-color: rgb(148, 204, 223); border-radius: 10px">Colors</th>
+      <th scope="col" style="background-color: rgb(132, 213, 240); border-radius: 10px">Color</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let color of colors" (click)="setCurrentColor(color)" routerLink="/color/update/{{color.colorId}}"
-      [class]="getColorClass(color)">
-      <td>{{ color.name | uppercase }}</td>
-      <td><button type="button" class="btn btn-success">UPDATE</button></td>
+    <tr *ngFor="let color of colors" (click)="setCurrentColor(color)" [class]="getColorClass(color)">
+      <td>{{ color.colorId }}</td>
+      <td>{{ color.name }}</td>
+      <td><button routerLink="/color/update/{{color.colorId}}" type="button" class="btn btn-outline-success">UPDATE</button></td>
+      <td><button (click)="deleteColor(color)" type="button" class="btn btn-outline-danger">DELETE</button></td>
     </tr>
+    <tr scope="col"><button routerLink="/color/add" type="button" class="btn btn-outline-info m-2">ADD</button></tr>
   </tbody>
 </table>
 

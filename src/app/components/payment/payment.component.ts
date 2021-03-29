@@ -5,8 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { PaymentService } from 'src/app/services/payment.service';
 import { Rental } from 'src/app/models/rental';
 import { Car } from 'src/app/models/car';
-import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { Payment } from 'src/app/models/payment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-payment',
@@ -15,11 +15,11 @@ import { Payment } from 'src/app/models/payment';
 })
 export class PaymentComponent implements OnInit {
 
-  faCreditCard:typeof faCreditCard;
-
   rental:Rental;
   car:Car;
   amount:number;
+
+  imageURL=environment.baseURL;
 
   constructor(private activatedRoute:ActivatedRoute,
     private carService:CarService,

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
 import { Car } from 'src/app/models/car';
+import { CarDelete } from 'src/app/models/carDelete';
 import { Color } from 'src/app/models/color';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
@@ -24,7 +27,9 @@ export class ListComponent implements OnInit {
 
   constructor(private carService:CarService,
     private brandService:BrandService,
-    private colorService:ColorService) { }
+    private colorService:ColorService,
+    private toastr:ToastrService,
+    private router:Router) { }
 
   ngOnInit(): void {
     this.getCars();
@@ -88,4 +93,39 @@ export class ListComponent implements OnInit {
     this.currentColor=color;
   }
 
+  deleteCar(car:Car){
+    let carModel:CarDelete={
+      id:car.id,
+      brandId:car.brandId,
+      colorId:car.colorId,
+      modelYear:car.modelYear,
+      dailyPrice:car.dailyPrice,
+      description:car.description,
+      minFindexScore:car.minFindexScore
+    }
+    this.carService.delete(carModel).subscribe(response=>{
+      this.toastr.success("DELETE OK")
+      window.location.reload()
+    },responseError=>{
+      this.toastr.error("ERRROR")
+    })
+  }
+
+  deleteBrand(brand:Brand){
+    this.brandService.delete(brand).subscribe(response=>{
+      this.toastr.success("DELETE OK")
+      window.location.reload()
+    },responseError=>{
+      this.toastr.error("ERRROR")
+    })
+  }
+
+  deleteColor(color:Color){
+    this.colorService.delete(color).subscribe(response=>{
+      this.toastr.success("DELETE OK")
+      window.location.reload()
+    },responseError=>{
+      this.toastr.error("ERRROR")
+    })
+  }
 }

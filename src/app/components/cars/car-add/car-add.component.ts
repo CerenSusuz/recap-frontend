@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
 import { Car } from 'src/app/models/car';
@@ -26,7 +27,8 @@ export class CarAddComponent implements OnInit {
     private carService:CarService,
     private brandService:BrandService,
     private colorService:ColorService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private router:Router) { }
 
   ngOnInit(): void {
     this.createCarAddForm()
@@ -62,12 +64,11 @@ export class CarAddComponent implements OnInit {
       let carModel = Object.assign({},this.carAddForm.value)
       console.log(carModel)
       this.carService.add(carModel).subscribe(response=>{
-        this.toastr.success(response.message)
+        this.toastr.success("Add OK")
+        this.router.navigate(['/list']);
       },responseError=>{
-        this.toastr.success("ADD OK")
+        this.toastr.error("ADD ERROR")
       })
-    }else{
-      this.toastr.error("ERROR")
-    }    
+    }
   }
 }

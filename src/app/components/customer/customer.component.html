@@ -5,12 +5,14 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Company</th>
+        <th scope="col">Findex Score</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let customer of customers">
         <th scope="row">{{customer.id}}</th>
         <td>{{customer.companyName}}</td>
+        <td>{{customer.findexScore}}</td>
       </tr>
     </tbody>
   </table>

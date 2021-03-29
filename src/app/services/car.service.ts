@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Car } from '../models/car';
+import { CarDelete } from '../models/carDelete';
 import { ItemResponseModel } from '../models/itemResponseModel';
 import { ListResponseModel } from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
@@ -52,7 +53,7 @@ export class CarService {
     return this.httpClient.post<ResponseModel>(this.apiURL+"cars/update",car);
   }
 
-  delete(car:Car):Observable<ResponseModel>{
+  delete(car:CarDelete):Observable<ResponseModel>{
     return this.httpClient.post<ResponseModel>(this.apiURL+"cars/delete",car);
   }
 
