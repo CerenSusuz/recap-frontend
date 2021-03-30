@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Brand } from 'src/app/models/brand';
-import { Car } from 'src/app/models/car';
 import { Color } from 'src/app/models/color';
 import { BrandService } from 'src/app/services/brand.service';
 import { CarService } from 'src/app/services/car.service';
@@ -15,12 +14,14 @@ import { ColorService } from 'src/app/services/color.service';
   templateUrl: './car-add.component.html',
   styleUrls: ['./car-add.component.css']
 })
+
 export class CarAddComponent implements OnInit {
 
   carAddForm:FormGroup;
 
   brands:Brand[];
   colors:Color[];
+
 
   constructor(
     private formBuilder:FormBuilder,
@@ -47,6 +48,7 @@ export class CarAddComponent implements OnInit {
       minFindexScore:["",Validators.required]
     })
   }
+
   getBrands(){
     this.brandService.getBrands().subscribe(response => {
       this.brands = response.data;
@@ -71,4 +73,7 @@ export class CarAddComponent implements OnInit {
       })
     }
   }
-}
+    
+  }
+  
+

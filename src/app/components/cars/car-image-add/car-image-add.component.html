@@ -1,0 +1,86 @@
+<div class="row m-4 p-4">
+  <div class="row">
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div *ngFor="let image of images; let i = index" [ngClass]="getSliderClassName(i)">
+          <img src="{{ imageUrl }}/{{ image.imagePath }}" class="d-block w-100" width="800" height="400" alt="..." />
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <table class="table m-1">
+      <thead>
+        <tr>
+          <th scope="col" style="background-color: rgb(174, 204, 214); border-radius: 10px">
+            Brand
+          </th>
+          <th scope="col" style="background-color: rgb(148, 199, 218); border-radius: 10px">
+            Color
+          </th>
+          <th scope="col" style="background-color: rgb(139, 209, 233); border-radius: 10px">
+            Model Year
+          </th>
+          <th scope="col" style="background-color: rgb(130, 207, 233); border-radius: 10px">
+            Daily Price
+          </th>
+
+          <th scope="col" style="background-color: rgb(98, 217, 250); border-radius: 10px">
+            Description
+          </th>
+          <th scope="col" style="background-color: rgb(84, 215, 252); border-radius: 10px">
+            Findex Score
+          </th>
+        </tr>
+
+      </thead>
+      <tbody>
+        <tr *ngIf="car">
+          <td>{{ car.brandName | uppercase}}</td>
+          <td>{{ car.colorName }}</td>
+          <td>{{ car.modelYear }}</td>
+          <td>{{ car.dailyPrice | currency }}</td>
+          <td>{{ car.description }}</td>
+          <td>{{ car.minFindexScore }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="row m-4">
+    <div class="col-8">
+      <label style="border-radius: 10px; border-color: rgb(0, 139, 109); width: 500px; "
+        class="image-upload-container btn btn-bwm">
+        <span class=""
+          style="font-size: 18px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: darkcyan;">Select
+          Image</span>
+        <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)">
+      </label>
+
+      <div *ngIf="selectedFile" class="img-preview-container">
+
+        <div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
+          [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}">
+        </div>
+
+        <div *ngIf="selectedFile.pending" class="img-loading-overlay">
+          <div class="img-spinning-circle"></div>
+        </div>
+
+        <div *ngIf="selectedFile.status === 'ok'" class="alert alert-success"> Image Uploaded Succesfuly!</div>
+        <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
+      </div>
+    </div>
+  </div>
+  
+</div>

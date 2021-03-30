@@ -1,5 +1,8 @@
-<div class="row m-2" >
+<div *ngIf="cars && (brands || colors)" class="alert alert-info w-100" role="alert">
+  Not exist cars
+</div>
 
+<div class="row m-2" >
 
   <div class="row m-2" >
     <div class="col col-4">

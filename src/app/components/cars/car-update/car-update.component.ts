@@ -40,6 +40,7 @@ export class CarUpdateComponent implements OnInit {
       }
     })
   }
+  
  createCarUpdateForm(){
     this.carUpdateForm = this.formBuilder.group({
       brandId: ["", Validators.required],
@@ -49,6 +50,20 @@ export class CarUpdateComponent implements OnInit {
       description: ["", Validators.required],
       minFindexScore:["",Validators.required]
     })
+  }
+
+  getCarDetail(carId:number) {
+    this.carService.getCarDetail(carId).subscribe((response) => {
+      this.car = response.data;
+      this.carUpdateForm.setValue({
+        colorId: this.car.colorId,
+        brandId: this.car.brandId,
+        modelYear: this.car.modelYear,
+        dailyPrice: this.car.dailyPrice,
+        description: this.car.description,
+        minFindexScore:this.car.minFindexScore
+      })
+    });
   }
 
   getBrands(){
@@ -74,20 +89,6 @@ export class CarUpdateComponent implements OnInit {
     }else{
       this.toastr.error("UPDATE ERROR")
     }    
-  }
-
-  getCarDetail(carId:number) {
-    this.carService.getCarDetail(carId).subscribe((response) => {
-      this.car = response.data;
-      this.carUpdateForm.setValue({
-        colorId: this.car.colorId,
-        brandId: this.car.brandId,
-        modelYear: this.car.modelYear,
-        dailyPrice: this.car.dailyPrice,
-        description: this.car.description,
-        minFindexScore:this.car.minFindexScore
-      })
-    });
   }
 
 }

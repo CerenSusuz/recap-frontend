@@ -34,6 +34,9 @@ export class BrandUpdateComponent implements OnInit {
   getBrandById(id: number) {
     this.brandService.getBrandById(id).subscribe((response) => {
         this.brand = response.data;
+        this.brandUpdateForm.setValue({
+          name:this.brand.name
+        })
       }
     );
   }

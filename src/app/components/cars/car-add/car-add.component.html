@@ -1,82 +1,83 @@
 <div class="card m-2" style="border-radius: 18px; color: darkgreen; border-color: darkolivegreen;">
-    <div class="card-header"><h5 style="color:darkgreen;" class="title font-weight-bold">Add Car</h5></div>
-  
-    <div class="card-body">
-  
-      <form [formGroup]="carAddForm">
+  <div class="card-header">
+    <h5 style="color:darkgreen;" class="title font-weight-bold">Add Car</h5>
+  </div>
 
-        <div class="row">
-            
-            <div class="col-6">
-                <div class="mb-3">
-                <label for="brandId">Choose Brand</label>
-                <div class="form-group">
-                  <select id="brandId" class="form-select"  formControlName="brandId">
-                    <option [ngValue]="brand.brandId" *ngFor="let brand of brands">{{ brand.name }}</option>
-                  </select>
-                </div>
-                </div>
+  <div class="card-body">
+
+    <form [formGroup]="carAddForm">
+
+      <div class="row">
+
+        <div class="col-6">
+          <div class="mb-3">
+            <label for="brandId">Choose Brand</label>
+            <div class="form-group">
+              <select id="brandId" class="form-select" formControlName="brandId">
+                <option [ngValue]="brand.brandId" *ngFor="let brand of brands">{{ brand.name }}</option>
+              </select>
             </div>
-
-            <div class="col-6">
-                <div class="mb-3">
-                <label for="colorId">Choose Color </label>
-                    <div class="form-group">
-                    <select id="colorId" class="form-select"  formControlName="colorId">
-                        <option [ngValue]="color.colorId" *ngFor="let color of colors">{{ color.name }}</option>
-                    </select>
-                    </div>
-                </div>
-            </div>  
-        </div>
-
-        
-          <div class="row">
-
-            <div class="col-6">
-                <div class="mb-3">
-                    <label for="modelYear">Model Year</label>
-                    <div class="form-group">
-                        <input type="number" id="modelYear" class="form-control" formControlName="modelYear"/>                   
-                    </div>
-                  </div>
-            </div>
-
-            <div class="col-6">
-                <div class="mb-3">
-                    <label for="dailyPrice">Daily Price</label>
-                    <div class="form-group">
-                        <input type="number" id="dailyPrice" class="form-control" formControlName="dailyPrice"/>                   
-                    </div>
-                  </div> 
-            </div>
-
           </div>
-
-          <div class="row">
-            <div class="mb-3">
-                <label for="description">Description</label>
-                <div class="form-group">
-                    <input type="text" id="description" class="form-control" formControlName="description"/>                   
-                </div>
-            </div>
         </div>
 
         <div class="col-6">
-            <div class="mb-3">
-                <label for="minFindexScore">Findex Score</label>
-                <div class="form-group">
-                    <input type="number" id="minFindexScore" class="form-control" formControlName="minFindexScore"/>                   
-                </div>
-              </div>
+          <div class="mb-3">
+            <label for="colorId">Choose Color </label>
+            <div class="form-group">
+              <select id="colorId" class="form-select" formControlName="colorId">
+                <option [ngValue]="color.colorId" *ngFor="let color of colors">{{ color.name }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-6">
+          <div class="mb-3">
+            <label for="modelYear">Model Year</label>
+            <div class="form-group">
+              <input type="number" id="modelYear" class="form-control" formControlName="modelYear" />
+            </div>
+          </div>
         </div>
 
-      </form>
-  
-    </div>
-  
-    <div class="card-footer">
-      <button class="btn btn-fill btn-success" (click)="add()">ADD</button>
-    </div>
-  
+        <div class="col-6">
+          <div class="mb-3">
+            <label for="dailyPrice">Daily Price</label>
+            <div class="form-group">
+              <input type="number" id="dailyPrice" class="form-control" formControlName="dailyPrice" />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="mb-3">
+          <label for="description">Description</label>
+          <div class="form-group">
+            <input type="text" id="description" class="form-control" formControlName="description" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="mb-3">
+          <label for="minFindexScore">Findex Score</label>
+          <div class="form-group">
+            <input type="number" id="minFindexScore" class="form-control" formControlName="minFindexScore" />
+          </div>
+        </div>
+      </div>
+
+    </form>
+
   </div>
+
+  <div class="card-footer">
+    <button class="btn btn-fill btn-success" (click)="add()">ADD</button>
+  </div>
+
+</div>

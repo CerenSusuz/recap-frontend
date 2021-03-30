@@ -31,6 +31,7 @@ import { RentalListComponent } from './components/rentals/rental-list/rental-lis
 
 import { ToastrModule } from 'ngx-toastr';
 import { CarUpdateComponent } from './components/cars/car-update/car-update.component';
+import { CarImageAddComponent } from './components/cars/car-image-add/car-image-add.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { CarUpdateComponent } from './components/cars/car-update/car-update.comp
     BrandListComponent,
     ColorListComponent,
     RentalListComponent,
-    CarUpdateComponent
+    CarUpdateComponent,
+    CarImageAddComponent
   ],
   imports: [
     BrowserModule,

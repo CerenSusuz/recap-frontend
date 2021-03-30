@@ -34,6 +34,9 @@ export class ColorUpdateComponent implements OnInit {
   getColorById(colorId:number){
     this.colorService.getColorById(colorId).subscribe(response=>{
       this.color=response.data;
+      this.colorUpdateForm.setValue({
+        name:this.color.name
+      })
     })
   }
 
