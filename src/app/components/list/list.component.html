@@ -1,4 +1,14 @@
 <!-- CARS -->
+<div *ngIf="!cars" class="alert alert-info w-100" role="alert">
+  Not exist cars
+</div>
+<div *ngIf="!brands" class="alert alert-info w-100" role="alert">
+  Not exist brands
+</div>
+<div *ngIf="!colors" class="alert alert-info w-100" role="alert">
+  Not exist colors
+</div>
+
 <table *ngIf="cars" class="table m-4">
   <thead>
     <tr>

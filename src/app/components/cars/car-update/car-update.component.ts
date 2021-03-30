@@ -85,6 +85,12 @@ export class CarUpdateComponent implements OnInit {
       this.carService.update(carModel).subscribe(response=>{
         this.toastr.success("UPDATE OK")
         this.router.navigate(['/list']);
+      },responseError=>{
+        if(responseError.error.ValidationErrors.length>0){
+          for (let i = 0; i < responseError.error.ValidationErrors.length ; i++) {
+            this.toastr.error(responseError.error.ValidationErrors[i].ErrorMessage);
+          }
+        }
       })
     }else{
       this.toastr.error("UPDATE ERROR")

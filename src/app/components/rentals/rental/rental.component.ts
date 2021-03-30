@@ -51,7 +51,6 @@ export class RentalComponent implements OnInit {
   }
 
   create() {
-    this.toastr.info("Navigate to  Payment Page");
     let rental: Rental =
     {
       carID: this.car.id,
@@ -60,8 +59,11 @@ export class RentalComponent implements OnInit {
       returnDate: this.returnDate
     }
     this.rentalService.add(rental).subscribe(repsonse=>{
-      this.toastr.success("RENT OK")
+      this.toastr.info("Navigate to  Payment Page");
+      this.toastr.success("RENT OK");
+      this.router.navigate(['/payment', JSON.stringify(rental)]);
+    },error=>{
+      this.toastr.error(error.error)
     })
-    this.router.navigate(['/payment', JSON.stringify(rental)]);
   }
 }

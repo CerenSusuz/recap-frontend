@@ -1,4 +1,4 @@
-<div *ngIf="cars && (brands || colors)" class="alert alert-info w-100" role="alert">
+<div *ngIf="!(cars && (brands || colors))" class="alert alert-info w-100" role="alert">
   Not exist cars
 </div>
 

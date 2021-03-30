@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { ToastrService } from 'ngx-toastr';
 import { Car } from 'src/app/models/car';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CarService } from 'src/app/services/car.service';
 import { CarImage } from 'src/app/models/carImage';
 import { environment } from 'src/environments/environment';
@@ -28,7 +28,8 @@ export class CarImageAddComponent implements OnInit {
   constructor( private activatedRoute:ActivatedRoute,
     private carService:CarService,
     private imageService: CarImageService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private router:Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -85,13 +86,18 @@ export class CarImageAddComponent implements OnInit {
         this.selectedFile.pending = true;
         this.imageService.uploadImage(this.selectedFile.file,this.car.id).subscribe((response) => {
             this.onSuccess();
-          },(error) => {
+          },error => {
             this.onError();
-            this.toastr.error("ERROR")
+            console.log(error)
+            this.toastr.error(error.error.message)
+            setTimeout(function(){
+              alert("You are redirected back to the operations page");
+             }, 200);
+             this.router.navigate(['/list']);
+            
           })
       });
       reader.readAsDataURL(file);
-      window.location.reload();
     }
 
 }

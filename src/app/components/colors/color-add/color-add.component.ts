@@ -35,6 +35,7 @@ export class ColorAddComponent implements OnInit {
         this.toastr.success("Add OK")
         this.router.navigate(['/list']);
       }, responseError => {
+        console.log(responseError.error.ValidationErrors)
         if (responseError.error.ValidationErrors.length > 0) {
           for (let i = 0; i < responseError.error.ValidationErrors.length; i++) {
             this.toastr.error(responseError.error.ValidationErrors[i].ErrorMessage);

@@ -128,4 +128,5 @@ export class ListComponent implements OnInit {
       this.toastr.error("ERRROR")
     })
   }
+  
 }

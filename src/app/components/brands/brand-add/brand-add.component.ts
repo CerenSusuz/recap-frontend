@@ -35,9 +35,10 @@ export class BrandAddComponent implements OnInit {
     {
       let brandModel:Brand = Object.assign({}, this.brandAddForm.value)
       this.brandService.add(brandModel).subscribe(response=>{
-        this.toastr.success("Add OK")
+        this.toastr.success("OK")
         this.router.navigate(['/list']);
       },responseError=>{
+        console.log(responseError.error.ValidationErrors)
         if(responseError.error.ValidationErrors.length>0){
           for (let i = 0; i < responseError.error.ValidationErrors.length ; i++) {
             this.toastr.error(responseError.error.ValidationErrors[i].ErrorMessage);
@@ -46,7 +47,7 @@ export class BrandAddComponent implements OnInit {
       })
     }
     else{
-      this.toastr.error("Add Error")
+      this.toastr.error("Error")
     }
 
   }

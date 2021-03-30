@@ -1,6 +1,8 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-info" role="status">
+<div *ngIf="!customers" class="alert alert-info w-100" role="alert">
+  Not exist brands
 </div>
-<table *ngIf="dataLoaded==true" class="table table-striped m-4">
+
+<table *ngIf="customers" class="table table-striped m-4">
     <thead>
       <tr>
         <th scope="col">#</th>

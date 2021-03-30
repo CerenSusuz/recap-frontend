@@ -122,15 +122,6 @@ basePath= environment.baseURL;
     
   }
 
-  deneme(brandId:number,colorId:number){
-    this.brandFilter=brandId;
-    this.colorFilter=colorId;
-  }
-
-
-
-
-
 
 }
 
