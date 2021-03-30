@@ -63,6 +63,7 @@ export class RentalComponent implements OnInit {
       this.toastr.success("RENT OK");
       this.router.navigate(['/payment', JSON.stringify(rental)]);
     },error=>{
+      console.error(error)
       this.toastr.error(error.error)
     })
   }

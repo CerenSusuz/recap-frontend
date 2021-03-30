@@ -9,4 +9,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title:string = 'recap';
   user:string = 'Ceren Susuz';
+  
 }

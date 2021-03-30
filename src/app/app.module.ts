@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -32,6 +32,10 @@ import { RentalListComponent } from './components/rentals/rental-list/rental-lis
 import { ToastrModule } from 'ngx-toastr';
 import { CarUpdateComponent } from './components/cars/car-update/car-update.component';
 import { CarImageAddComponent } from './components/cars/car-image-add/car-image-add.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,10 @@ import { CarImageAddComponent } from './components/cars/car-image-add/car-image-
     ColorListComponent,
     RentalListComponent,
     CarUpdateComponent,
-    CarImageAddComponent
+    CarImageAddComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +81,11 @@ import { CarImageAddComponent } from './components/cars/car-image-add/car-image-
     FontAwesomeModule
 
   ],
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,
+    useClass:AuthInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

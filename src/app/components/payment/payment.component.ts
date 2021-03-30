@@ -67,6 +67,7 @@ export class PaymentComponent implements OnInit {
       console.log(paymentModel.amount)
         this.paymentService.payment(paymentModel).subscribe(response => {
         this.toastr.success("Payment OK");
+        this.router.navigate(['/cars'])
       },error=>{
         console.log(error)
         this.toastr.error(error.error);

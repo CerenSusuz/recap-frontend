@@ -14,44 +14,47 @@ import { ColorListComponent } from './components/colors/color-list/color-list.co
 import { ColorUpdateComponent } from './components/colors/color-update/color-update.component';
 import { ColorComponent } from './components/colors/color/color.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 import { ListComponent } from './components/list/list.component';
+import { LoginComponent } from './components/login/login.component';
+import { NavComponent } from './components/nav/nav.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { RegisterComponent } from './components/register/register.component';
 import { RentalListComponent } from './components/rentals/rental-list/rental-list.component';
 import { RentalComponent } from './components/rentals/rental/rental.component';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
-  {path:"",pathMatch:"full",component:CarComponent},
-  {path:"homepage",pathMatch:"full",component:CarComponent},
-  {path:"customers",pathMatch:"full",component:CustomerComponent},
-  {path:"colors",pathMatch:"full",component:ColorListComponent},
-  {path:"brands",pathMatch:"full",component:BrandListComponent},
-  {path:"rentals",pathMatch:"full",component:RentalListComponent},
+  {path:"",pathMatch:"full",component:HomepageComponent},
+  {path:"homepage/:loginModel",pathMatch:"full",component:HomepageComponent},
+  {path:"homepage",pathMatch:"full",component:HomepageComponent},
 
+  {path:"colors",component:ColorListComponent,canActivate:[LoginGuard]},
+  {path:"brands",component:BrandListComponent,canActivate:[LoginGuard]},
+  {path:"rentals",component:RentalListComponent,canActivate:[LoginGuard]},
+  {path:"customers",component:CustomerComponent,canActivate:[LoginGuard]},
 
   {path:"cars",component:CarComponent},
-  
   {path:"cars/details/:carId",component:CarDetailComponent},
-  
   {path:"cars/brand/:brandId",component:CarComponent},
   {path:"cars/color/:colorId",component:CarComponent},
 
-  {path:"brands",component:BrandComponent},
-  {path:"colors",component:ColorComponent},
-  {path:"customers",component:CustomerComponent},
-  {path:"rentals",component:RentalComponent},
   {path:"payment/:rental",component:PaymentComponent},
   
   {path:"cars/filter/brand/:selectedBrandId/color/:selectedColorId",component:CarComponent},
   
-  {path:"car/add",component:CarAddComponent},
-  {path:"color/add",component:ColorAddComponent},
-  {path:"brand/add",component:BrandAddComponent},
+  {path:"car/add",component:CarAddComponent,canActivate:[LoginGuard]},
+  {path:"color/add",component:ColorAddComponent,canActivate:[LoginGuard]},
+  {path:"brand/add",component:BrandAddComponent,canActivate:[LoginGuard]},
 
-  {path:"list",component:ListComponent},
-  {path:"brand/update/:brandId",component:BrandUpdateComponent},
-  {path:"color/update/:colorId",component:ColorUpdateComponent},
-  {path:"car/update/:id",component:CarUpdateComponent},
-  {path:"car/addImage/:id",component:CarImageAddComponent}
+  {path:"list",component:ListComponent,canActivate:[LoginGuard]},
+  {path:"brand/update/:brandId",component:BrandUpdateComponent,canActivate:[LoginGuard]},
+  {path:"color/update/:colorId",component:ColorUpdateComponent,canActivate:[LoginGuard]},
+  {path:"car/update/:id",component:CarUpdateComponent,canActivate:[LoginGuard]},
+  {path:"car/addImage/:id",component:CarImageAddComponent,canActivate:[LoginGuard]},
+
+  {path:"login",component:LoginComponent},
+  {path:"register",component:RegisterComponent}
 
 ];
 
