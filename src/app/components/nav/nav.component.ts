@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,32 +13,27 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavComponent implements OnInit {
 
-  user:User;
-
   constructor(private authService:AuthService,
     private localStorageService:LocalStorageService,
-    private userService:UserService,
-    private toastr:ToastrService) { }
+    private toastr:ToastrService,
+    private router:Router) { }
 
   ngOnInit(): void {
   }
 
   isLogOK(){
-    return this.authService.isAuthenticated();
+    return this.authService.isAuthenticated()
   }
 
   getUser(){
-    return this.localStorageService.getItem("user")!;
-    })
-  }
+    return this.localStorageService.getItem('user');
+    }
 
   logout(){
     this.authService.logOut();
     this.toastr.info("Log OUT OK");
+    this.router.navigate(['/homepage']);
   }
-
-
-
 
 }
 

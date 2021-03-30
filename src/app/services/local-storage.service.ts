@@ -14,7 +14,7 @@ export class LocalStorageService {
   }
 
   getItem(key:string){
-    return localStorage.getItem(key);
+    return JSON.parse(localStorage.getItem(key)!);
   }
 
   removeItem(key:string){
@@ -22,7 +22,7 @@ export class LocalStorageService {
   }
 
   isExist(key:string):boolean{
-    if(localStorage.getItem(key)){
+    if(JSON.parse(localStorage.getItem(key)!)){
       return true;
     }else{
       return false;

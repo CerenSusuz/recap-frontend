@@ -31,11 +31,11 @@
           </li>
         </ul>
 
-        <div *ngIf="isLogOK && user">
+        <div *ngIf="isLogOK() && getUser()">
 
           <div class="text-center" 
           style="color:darkolivegreen; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 18px;">
-          {{user.firstName}} {{user.lastName}}
+          {{getUser().firstName}} {{getUser().lastName}}
         </div>
            
           <span class="text-light fs-6">
@@ -45,7 +45,7 @@
 
         </div>
 
-        <div *ngIf="!isLogOK" >
+        <div *ngIf="!isLogOK()" >
 
           <form class="d-flex">
             <div class="d-flex btn-group ps-4" role="group" aria-label="Basic radio toggle button group">
