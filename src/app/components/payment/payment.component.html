@@ -1,3 +1,18 @@
+<!-- Save Card -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button (click)="payment()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">Would you like to save your card?</div>
+      <div class="modal-footer">
+        <button (click)="save()" type="button" class="btn btn-success">Save Card</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="card mt-4">
   <div class="card-body">
 
@@ -31,95 +46,61 @@
     </table>
 
     <!-- credit-card -->
-    <div class="card mt-4">
 
-        <div class="card-body">
+    <img src="{{imageURL}}/uploads/credit-card.png" alt="No IMG" style="width: 240px;">
+    <div>
+      <div class="icons">
+        <img src="https://img.icons8.com/color/48/000000/visa.png" />
+        <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" />
+        <img src="https://img.icons8.com/color/48/000000/maestro.png" />
+      </div>
+      <form [formGroup]="cardAddForm">
+        <div *ngIf="creditCards.length>0" class="mb-3" style="width: 12rem;">
+          <label for="customerCard">Your Credit Cards</label>
+          <select class="form-control" (ngModelChange)="setCardInfos()" formControlName="customerCard" required
+            id="customerCard" name="customerCard">
+            <option *ngFor="let card of creditCards" [value]="card.id" class="form-control">{{card.nameOnTheCard}}
+            </option>
+          </select>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" id="nameOnTheCard" class="form-control" placeholder="nameOnTheCard"
+            formControlName="nameOnTheCard">
+          <label for="nameOnTheCard">Kart Üzerindeki Ad ve Soyad</label>
+        </div>
 
-          <img src="{{imageURL}}/uploads/credit-card.png" alt="No IMG" style="width: 240px;">
+        <div class="form-floating mb-3">
+          <input type="text" id="cardNumber" class="form-control" placeholder="cardNumber" formControlName="cardNumber">
+          <label for="cardNumber">Kart Numarası</label>
+        </div>
 
-        <div *ngIf="cards" class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-floating mb-3">
+              <input type="text" id="expirationDate" class="form-control" placeholder="expirationDate"
+                formControlName="expirationDate">
+              <label for="expirationDate">Son Kullanım Tarihi</label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-floating mb-3">
+              <input type="text" id="cvv" class="form-control" placeholder="cvv" formControlName="cvv">
+              <label for="cvv">CVV</label>
+            </div>
+          </div>
+        </div>
 
-          <div class="d-grid gap-2">
-            <button type="button" class="btn btn-sm btn-outline-success float-end" data-bs-toggle="modal" data-bs-target="#rentModal">
-              Get Credit Card
+        <div class="card-footer">
+          <div class="row">
+            <button (click)="payment()" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <img src="{{imageURL}}/uploads/yellowCard.png" alt="No IMG" style="width: 40px;">
+              <img src="{{imageURL}}/uploads/redCard.png" alt="No IMG" style="width: 40px;">
+              <img src="{{imageURL}}/uploads/blueCard.png" alt="No IMG" style="width: 40px;">
+              <strong>{{ amount | currency }} PAY </strong>
             </button>
           </div>
-
-          <div class="modal-body">
-
-            <label for="cardNumber" class="col-4 col-form-label">Card Number :</label>
-            <div class="form-group row mb-2">
-              <div class="col-8">
-                <select class="form-select" >
-                  <option *ngFor="let card of cards" [value]="card.cardNumber" >
-                    {{ card.cardNumber }}
-                  </option>
-                </select>
-              </div>
-            </div>
-    
-          </div>
-
         </div>
+      </form>
 
-
-          <!-- <div class="row">
-            <form [formGroup]="creditCardForm">
-
-              <div class="inputbox mt-3">
-                <span>Name on the card</span>
-                <input [(ngModel)]="creditCard.nameOnTheCard" type="text" class="form-control" required="required"
-                  maxlength="20" formControlName="nameOnTheCard" />
-              </div>
-
-              <div class="col-md-8">
-                <div class="inputbox mt-3 mr-2">
-                  <span>Card Number</span>
-                  <input [(ngModel)]="creditCard.cardNumber" formControlName="cardNumber" type="text"
-                    class="form-control" required="required" maxlength="16" />
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="inputbox mt-3 mr-2">
-                  <span>Expiration Date</span>
-                  <input [(ngModel)]="creditCard.expirationDate" type="text" formControlName="expirationDate"
-                    placeholder="MM/YY" class="form-control" required="required" maxlength="5" />
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="inputbox mt-3 mr-2">
-                  <span>CVV</span>
-                  <input [(ngModel)]="creditCard.cvv" type="number" class="form-control" required="required"
-                    maxlength="3" />
-                </div>
-              </div>
-            </form>
-          </div> -->
-
-          <!-- <div class="checkbox mb-3 float-end">
-      <label style="color: cadetblue; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-      font-size: 18px;">
-        <input type="checkbox" [(ngModel)]="saveCard" id="saveCard" name="saveCard" value="saveCard" />  Save the Card</label>
-    </div> -->
-
-        </div>
-      </div>
-
-
-    <!-- Payment -->
-    <div class="card-footer">
-      <div class="row">
-        <button (click)="payment()" class="btn btn-success">
-          <img src="{{imageURL}}/uploads/yellowCard.png" alt="No IMG" style="width: 40px;">
-          <img src="{{imageURL}}/uploads/redCard.png" alt="No IMG" style="width: 40px;">
-          <img src="{{imageURL}}/uploads/blueCard.png" alt="No IMG" style="width: 40px;">
-          <strong>{{ amount | currency }} PAY </strong>
-        </button>
-      </div>
     </div>
-
-
   </div>
-</div>

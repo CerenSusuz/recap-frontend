@@ -9,7 +9,7 @@ import { Payment } from 'src/app/models/payment';
 import { environment } from 'src/environments/environment';
 import { CreditCardService } from 'src/app/services/credit-card.service';
 import { CreditCard } from 'src/app/models/creditCard';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-payment',
@@ -18,75 +18,133 @@ import { FormGroup } from '@angular/forms';
 })
 export class PaymentComponent implements OnInit {
 
-  rental:Rental;
-  car:Car;
-  amount:number;
+  rental: Rental;
+  car: Car;
+  amount: number;
 
-  cards:CreditCard[];
+  imageURL = environment.baseURL;
 
-  imageURL=environment.baseURL;
+  cardNumber: string;
+  nameOnTheCard: string;
+  expirationDate: string;
+  cvv: number;
+  cardId: number;
 
-  creditCardForm:FormGroup;
-  
-  constructor(private activatedRoute:ActivatedRoute,
-    private carService:CarService,
-    private router:Router,
-    private toastr: ToastrService, 
-    private paymentService:PaymentService,
-    private creditCardService:CreditCardService
-    ) { }
+  creditCards: CreditCard[] = [];
+  cardAddForm: FormGroup;
+
+  constructor(private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private carService: CarService,
+    private router: Router,
+    private toastr: ToastrService,
+    private paymentService: PaymentService,
+    private creditCardService: CreditCardService
+  ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params=>{
-      if(params["rental"]){
+    this.activatedRoute.params.subscribe(params => {
+      if (params['rental']) {
         this.rental = JSON.parse(params['rental']);
         this.getCar();
+        this.getCardByCustomer();
+        this.createCreditCardForm();
       }
     })
   }
 
-  getCar(){
+  createCreditCardForm() {
+    this.cardAddForm = this.formBuilder.group({
+      customerCard: ['', Validators.required],
+      nameOnTheCard: ['', Validators.required],
+      cardNumber: ['', Validators.required],
+      cvv: ['', Validators.required],
+      expirationDate: ['', Validators.required],
+    });
+  }
+
+  save() {
+    let cardModel: CreditCard = {
+      cardNumber: this.cardNumber,
+      nameOnTheCard: this.nameOnTheCard,
+      expirationDate: this.expirationDate,
+      cvv: this.cvv,
+      customerId: this.rental.customerID,
+    };
+    this.creditCardService.add(cardModel).subscribe((response) => {
+      this.toastr.success('SAVE OK');
+      this.payment();
+    }, responseCardError => {
+      this.toastr.error('ERRORR');
+    }
+    );
+  }
+
+  notSave() {
+    this.payment();
+  }
+
+  getCardByCustomer() {
+    this.creditCardService.getByCustomerId(this.rental.customerID).subscribe(response => {
+      this.creditCards = response.data;
+      console.info(this.creditCards);
+      this.setCard();
+    });
+  }
+
+  setCard() {
+    this.creditCards.forEach(response => {
+      this.cardNumber = response.cardNumber;
+      this.nameOnTheCard = response.nameOnTheCard;
+      this.expirationDate = response.expirationDate;
+      this.cvv = response.cvv;
+    });
+  }
+
+  setCardInfos() {
+    this.cardAddForm.patchValue({
+      cardNumber: this.cardNumber,
+      nameOnTheCard: this.nameOnTheCard,
+      expirationDate: this.expirationDate,
+      cvv: this.cvv,
+    });
+  }
+
+  getCar() {
     this.carService.getCarDetail(this.rental.carID).subscribe(response => {
-     this.car= response.data;
-     this.totalPayment(); 
+      this.car = response.data;
+      this.totalPayment();
     })
   }
 
-  getCard(){
-    this.creditCardService.getByCustomerId(this.rental.customerID).subscribe(response=>{
-      this.cards=response.data;
-    })
-  }
-
-  totalPayment(){
-    if(this.rental.returnDate != null )
-    {
+  totalPayment() {
+    if (this.rental.returnDate != null) {
       let dateRent = new Date(this.rental.returnDate.toString());
       let dateReturn = new Date(this.rental.rentDate.toString());
       let difference = (dateRent.getTime() - dateReturn.getTime());
       let differenceOfDays = Math.ceil(difference / (1000 * 3600 * 24));
-      if(differenceOfDays==0){
-        differenceOfDays=1;
+      if (differenceOfDays == 0) {
+        differenceOfDays = 1;
       }
-      this.amount = differenceOfDays * (this.car.dailyPrice + ( this.car.dailyPrice * 8 / 100)); //calculate with VAT
+      this.amount = differenceOfDays * (this.car.dailyPrice + (this.car.dailyPrice * 8 / 100)); //calculate with VAT
     }
   }
 
-
-  payment(){
-    if(this.amount>100){
-      let paymentModel:Payment ={
-        amount:this.amount
+  payment() {
+    if (this.amount > 100) {
+      let paymentModel: Payment = {
+        amount: this.amount
       }
       console.log(paymentModel.amount)
-        this.paymentService.payment(paymentModel).subscribe(response => {
+      this.paymentService.payment(paymentModel).subscribe(response => {
         this.toastr.success("Payment OK");
-        this.router.navigate(['/cars'])
-      },error=>{
+      }, error => {
         console.log(error)
         this.toastr.error(error.error);
       }
       )
     }
   }
+
+
 }

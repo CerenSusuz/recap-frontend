@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Customer } from 'src/app/models/customer';
 import { Car } from 'src/app/models/car';
 import { RentalService } from 'src/app/services/rental.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-rental',
@@ -29,6 +30,7 @@ export class RentalComponent implements OnInit {
 
   constructor(
     private rentalService: RentalService,
+    private authService:AuthService,
     private router: Router,
     private customerService: CustomerService,
     private toastr: ToastrService
@@ -36,6 +38,16 @@ export class RentalComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCustomer();
+  }
+
+  isLogOK(){
+    if(this.authService.isAuthenticated()){
+      return true;
+    }else{
+      this.toastr.error("Must be Login or Register")
+      this.router.navigate(['/homepage'])
+      return false;
+    }
   }
 
   getCustomer() {
@@ -63,8 +75,9 @@ export class RentalComponent implements OnInit {
       this.toastr.success("RENT OK");
       this.router.navigate(['/payment', JSON.stringify(rental)]);
     },error=>{
-      console.error(error)
+      console.info(error)
       this.toastr.error(error.error)
+      this.toastr.error(error.error.Message)
     })
   }
 }

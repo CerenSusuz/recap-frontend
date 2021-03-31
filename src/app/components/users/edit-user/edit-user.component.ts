@@ -25,6 +25,7 @@ export class EditUserComponent implements OnInit {
     private formBuilder:FormBuilder,
     private toastrService:ToastrService,
     private localStorageService:LocalStorageService,
+    private authService:AuthService,
     private router:Router) { }
 
   ngOnInit(): void {
@@ -67,8 +68,9 @@ export class EditUserComponent implements OnInit {
       profileModel.id=this.user.id;
       console.log(profileModel)
       this.userService.update(profileModel).subscribe(response=>{
-        this.toastrService.success("Update OK");
-        this.router.navigate(['/homepage']);
+        this.toastrService.success("Login AGAIN please");
+        this.router.navigate(["/homepage"]);
+        this.authService.logOut();
       },responseError=>{
        this.toastrService.error(responseError.error);
       });

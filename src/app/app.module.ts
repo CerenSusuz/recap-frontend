@@ -37,6 +37,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { EditUserComponent } from './components/users/edit-user/edit-user.component';
+import { CreditCardComponent } from './components/credit-card/credit-card.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { EditUserComponent } from './components/users/edit-user/edit-user.compon
     RegisterComponent,
     HomepageComponent,
     EditUserComponent,
+    CreditCardComponent,
   ],
   imports: [
     BrowserModule,

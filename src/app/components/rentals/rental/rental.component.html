@@ -4,7 +4,7 @@
   </button>
 </div>
 
-<div class="modal fade" id="rentModal" tabindex="-1" aria-labelledby="rentModalLabel" aria-hidden="true">
+<div *ngIf="isLogOK()" class="modal fade" id="rentModal" tabindex="-1" aria-labelledby="rentModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -29,7 +29,7 @@
         <div class="form-group row mb-2">
           <div class="col-8">
             <select [(ngModel)]="customerId" class="form-select" >
-              <option *ngFor="let customer of customers" [value]="customer.id" >
+              <option *ngFor="let customer of customers" [value]="customer.customerId" >
                 {{ customer.companyName }}
               </option>
             </select>

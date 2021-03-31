@@ -7,13 +7,19 @@
       <tr>
         <th scope="col">#</th>
         <th scope="col">Company</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">E Mail</th>
         <th scope="col">Findex Score</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let customer of customers">
-        <th scope="row">{{customer.id}}</th>
+        <td>{{customer.customerId}}</td>
         <td>{{customer.companyName}}</td>
+        <td>{{customer.firstName}}</td>
+        <td>{{customer.lastName}}</td>
+        <td>{{customer.email}}</td>
         <td>{{customer.findexScore}}</td>
       </tr>
     </tbody>
