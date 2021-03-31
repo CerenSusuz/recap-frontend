@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
         console.log(response);
 
         this.localStorageService.setItem("token",response.data.token);
+        
         this.getUserByEmail(loginModel.email);
 
         this.toastr.info(response.message)
