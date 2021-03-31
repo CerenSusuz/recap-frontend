@@ -1,6 +1,18 @@
 <img src="images/VisualStudioCodeLogo.png" alt="Logo" width="80" height="80">
 <img src="images/angular.png" alt="Logo" width="80" height="80">
 
+<img src="images/homepage2.png" alt="Logo" width="420" height="420">
+<img src="images/homepage1.png" alt="Logo" width="420" height="420">
+<img src="images/editProfile.png" alt="Logo" width="420" height="420">
+<img src="images/login.png" alt="Logo" width="420" height="420">
+<img src="images/register.png" alt="Logo" width="420" height="420">
+<img src="images/rentForm.png" alt="Logo" width="420" height="420">
+<img src="images/rentNow.png" alt="Logo" width="420" height="420">
+<img src="images/scoreControl.png" alt="Logo" width="420" height="420">
+<img src="images/loggedIn.png" alt="Logo" width="420" height="420">
+<img src="images/notAvailable.png" alt="Logo" width="420" height="420">
+
+
 # Recap
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
