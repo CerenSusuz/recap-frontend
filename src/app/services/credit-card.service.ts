@@ -4,7 +4,6 @@ import { environment } from 'src/environments/environment';
 import { CreditCard } from '../models/creditCard';
 import { ResponseModel } from '../models/responseModel';
 import { Observable } from 'rxjs';
-import { ItemResponseModel } from '../models/itemResponseModel';
 import { ListResponseModel } from '../models/listResponseModel';
 
 @Injectable({

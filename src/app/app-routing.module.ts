@@ -18,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RentalListComponent } from './components/rentals/rental-list/rental-list.component';
+import { EditUserComponent } from './components/users/edit-user/edit-user.component';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
@@ -25,17 +26,17 @@ const routes: Routes = [
   {path:"homepage/:loginModel",pathMatch:"full",component:HomepageComponent},
   {path:"homepage",pathMatch:"full",component:HomepageComponent},
 
-  {path:"colors",component:ColorListComponent,canActivate:[LoginGuard]},
-  {path:"brands",component:BrandListComponent,canActivate:[LoginGuard]},
-  {path:"rentals",component:RentalListComponent,canActivate:[LoginGuard]},
-  {path:"customers",component:CustomerComponent,canActivate:[LoginGuard]},
+  {path:"colors",component:ColorListComponent},
+  {path:"brands",component:BrandListComponent},
+  {path:"rentals",component:RentalListComponent},
+  {path:"customers",component:CustomerComponent},
 
   {path:"cars",component:CarComponent},
   {path:"cars/details/:carId",component:CarDetailComponent},
   {path:"cars/brand/:brandId",component:CarComponent},
   {path:"cars/color/:colorId",component:CarComponent},
 
-  {path:"payment/:rental",component:PaymentComponent,canActivate:[LoginGuard]},
+  {path:"payment/:rental",component:PaymentComponent},
   
   {path:"cars/filter/brand/:selectedBrandId/color/:selectedColorId",component:CarComponent},
   
@@ -51,6 +52,7 @@ const routes: Routes = [
 
   {path:"login",component:LoginComponent},
   {path:"register",component:RegisterComponent},
+  {path:"user/edit",component:EditUserComponent}
 
 ];
 

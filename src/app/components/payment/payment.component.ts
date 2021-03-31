@@ -7,9 +7,9 @@ import { Rental } from 'src/app/models/rental';
 import { Car } from 'src/app/models/car';
 import { Payment } from 'src/app/models/payment';
 import { environment } from 'src/environments/environment';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CreditCard } from 'src/app/models/creditCard';
 import { CreditCardService } from 'src/app/services/credit-card.service';
+import { CreditCard } from 'src/app/models/creditCard';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-payment',
@@ -22,28 +22,18 @@ export class PaymentComponent implements OnInit {
   car:Car;
   amount:number;
 
-  creditCardForm:FormGroup;
-  creditCard:CreditCard = {
-  customerId: 0,
-  nameOnTheCard:"",
-  cardNumber: "",
-  expirationDate: "",
-  cvv: 0
-  }
-  cards:CreditCard[]=[];
-  saveCard:boolean;
-
+  cards:CreditCard[];
 
   imageURL=environment.baseURL;
 
+  creditCardForm:FormGroup;
+  
   constructor(private activatedRoute:ActivatedRoute,
-    private formBuilder:FormBuilder,
     private carService:CarService,
     private router:Router,
     private toastr: ToastrService, 
     private paymentService:PaymentService,
     private creditCardService:CreditCardService
-
     ) { }
 
   ngOnInit(): void {
@@ -51,8 +41,6 @@ export class PaymentComponent implements OnInit {
       if(params["rental"]){
         this.rental = JSON.parse(params['rental']);
         this.getCar();
-        this.createCreditCardAddForm();
-        this.getCards(this.rental.customerID);
       }
     })
   }
@@ -61,6 +49,12 @@ export class PaymentComponent implements OnInit {
     this.carService.getCarDetail(this.rental.carID).subscribe(response => {
      this.car= response.data;
      this.totalPayment(); 
+    })
+  }
+
+  getCard(){
+    this.creditCardService.getByCustomerId(this.rental.customerID).subscribe(response=>{
+      this.cards=response.data;
     })
   }
 
@@ -78,43 +72,6 @@ export class PaymentComponent implements OnInit {
     }
   }
 
-  createCreditCardAddForm(){
-    this.creditCardForm = this.formBuilder.group({
-      nameOnTheCard:['',Validators.required],
-      cardNumber:['',Validators.required],
-      expirationDate:['',Validators.required],
-      cvv:['',Validators.required]
-    })
-  }
-
-  getCards(customerId:number){
-    this.creditCardService.getByCustomerId(customerId).subscribe(response=>{
-      this.cards=response.data;
-    })
-  }
-  
-  saveCreditCard(){
-    let cardModel:CreditCard={
-      customerId:this.cards[0].customerId,
-      cardNumber:this.creditCard.cardNumber,
-      nameOnTheCard:this.creditCard.nameOnTheCard,
-      expirationDate:this.creditCard.expirationDate,
-      cvv:this.creditCard.cvv
-    }
-    this.creditCardService.add(cardModel).subscribe(response=>{
-      this.toastr.success("Card Add ok");
-    },responseError=>{
-      this.toastr.error(responseError.error);
-    })
-  }
-
-  cardSelectChangeHandler(event: any) {
-    for (let i = 0; i < this.cards.length; i++) {
-      if (this.cards[i].id == event.target.value) {
-        this.creditCard = this.cards[i];
-      }
-    }
-  }
 
   payment(){
     if(this.amount>100){

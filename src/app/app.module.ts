@@ -36,6 +36,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { EditUserComponent } from './components/users/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     CarImageAddComponent,
     LoginComponent,
     RegisterComponent,
-    HomepageComponent
+    HomepageComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

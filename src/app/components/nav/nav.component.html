@@ -19,35 +19,33 @@
         <li class="nav-item">
           <a class="nav-link " aria-current="page" routerLink="/cars">RENT NOW!</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Admin
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" aria-current="page" routerLink="/list">Operations</a>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" routerLink="/cars">Cars</a></li>
-            <li><a class="dropdown-item" routerLink="/customers">Customers</a></li>
-            <li><a class="dropdown-item" routerLink="/brands">Brands</a></li>
-            <li><a class="dropdown-item" routerLink="/colors">Colors</a></li>
-            <li><a class="dropdown-item" routerLink="/rentals">Rentals</a></li>
-          </ul>
-        </li>
-
         </ul>
 
         <div *ngIf="isLogOK() && getUser()">
-
-          <div class="text-center"
-            style="color:darkolivegreen; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 18px;">
-            {{getUser().firstName}} {{getUser().lastName}}
-          </div>
-          <button class="btn btn-outline-warning" routerLink="/user/edit/{{getUser().id}}">Edit Info</button>
-          <button class="btn btn-outline-danger ms-2" (click)="logout()">Log Out</button>
-
+          <ul class="navbar-nav me-auto ms-5 mb-lg-0 ">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <div class="text-center"
+              style="color:darkolivegreen; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; font-size: 18px;">
+              {{getUser().firstName}} {{getUser().lastName}}
+            </div>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" aria-current="page" routerLink="/list">Operations</a>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" routerLink="/cars">Cars</a></li>
+              <li><a class="dropdown-item" routerLink="/customers">Customers</a></li>
+              <li><a class="dropdown-item" routerLink="/brands">Brands</a></li>
+              <li><a class="dropdown-item" routerLink="/colors">Colors</a></li>
+              <li><a class="dropdown-item" routerLink="/rentals">Rentals</a></li>
+              <li><a class="dropdown-item"><button class="btn btn-outline-warning" routerLink="/user/edit/">Edit Info</button></a></li>
+              <li><a class="dropdown-item"><button class="btn btn-outline-danger ms-2" (click)="logout()">Log Out</button></a></li>
+            </ul>
+          </li>
+        </ul>
         </div>
 
         <div class="mb-2" *ngIf="!isLogOK()">
