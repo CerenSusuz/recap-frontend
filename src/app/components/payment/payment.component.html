@@ -1,5 +1,7 @@
 <div class="card mt-4">
   <div class="card-body">
+
+<!-- rental detail -->
     <table class="table">
 
       <thead>
@@ -28,9 +30,21 @@
 
     </table>
 
+<!-- saved credit-card -->
+    <div class="mb-3">
+      <label>Kayıtlı Kartlar</label>
+      <select (change)="cardSelectChangeHandler($event)" class="form-select" aria-label="Default select example">
+        <option selected>Kullanıcıya Ait Kayıtlı Kartlar</option>
+        <option *ngFor="let cards of cards" value="{{ cards.id }}">
+          Cart Numarası : {{ cards.cardNumber }}
+        </option>
+      </select>
+    </div>
+
   </div>
 </div>
 
+<!-- credit-card -->
 <div class="card mt-4">
 
   <div class="card-body">
@@ -38,40 +52,55 @@
     <img src="{{imageURL}}/uploads/credit-card.png" alt="No IMG" style="width: 240px;">
 
     <div class="row">
-      <form [formGroup]="creditCardGroup">
+      <form [formGroup]="creditCardForm">
+
         <div class="inputbox mt-3">
           <span>Name on the card</span>
-          <input [(ngModel)]="nameOnTheCard" type="text" class="form-control" required="required"
+          <input [(ngModel)]="creditCard.nameOnTheCard" type="text" class="form-control" required="required" maxlength="20"
             formControlName="nameOnTheCard" />
         </div>
 
         <div class="col-md-8">
           <div class="inputbox mt-3 mr-2">
             <span>Card Number</span>
-            <input [(ngModel)]="cardNumber" formControlName="cardNumber" type="text" class="form-control"
-              required="required" />
+            <input [(ngModel)]="creditCard.cardNumber" formControlName="cardNumber" type="text" class="form-control"
+              required="required" maxlength="16" />
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="inputbox mt-3 mr-2">
             <span>Expiration Date</span>
-            <input [(ngModel)]="expirationDate" type="text" formControlName="expirationDate" placeholder="MM/YY"
-              class="form-control" required="required" />
+            <input [(ngModel)]="creditCard.expirationDate" type="text" formControlName="expirationDate" placeholder="MM/YY"
+              class="form-control" required="required" maxlength="5" />
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="inputbox mt-3 mr-2">
-            <span>Security Code</span>
-            <input [(ngModel)]="cvv" type="text" class="form-control" required="required" />
+            <span>CVV</span>
+            <input [(ngModel)]="creditCard.cvv" type="number" class="form-control" required="required" maxlength="3" />
           </div>
         </div>
       </form>
     </div>
 
   </div>
-  <div class="card-footer">
+</div>
+
+
+<!-- Payment -->
+<div class="card-footer">
+
+    <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" 
+        [(ngModel)]="saveCard" 
+        id="saveCard" 
+        name="saveCard" 
+        value="saveCard" />Save Card</label>
+    </div>
+
     <div class="row">
       <button (click)="payment()" class="btn btn-success">
         <img src="{{imageURL}}/uploads/yellowCard.png" alt="No IMG" style="width: 40px;">
@@ -80,69 +109,6 @@
         <strong>{{ amount | currency }} PAY </strong>
       </button>
     </div>
-  </div>
 </div>
 
 
-
-<div class="col-md-12 col-lg-5">
-  <div class="creditCart text-light row">
-    <div class="col-12 row">
-      <div class="col-4">
-        <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" class="img-fluid mt-2" />
-      </div>
-      <div class="col-8">
-        <p class="mt-2 fs-2 fw-bold float-end">Credit Cart</p>
-      </div>
-    </div>
-    <div class="col-12">
-      <img src="assets/images/icons/chip.png" class="float-start ms-3" style="width: 15%" />
-    </div>
-    <div class="col-12">
-      <h3 class="creditCartFont fs-2 ms-3">{{ cardNumber }}</h3>
-    </div>
-    <div class="col-12 row">
-      <div class="col-8">
-        <p class="ms-3 creditCartFont">{{ nameSurname }}</p>
-      </div>
-      <div class="col-4 creditCartFont">
-        <p>{{ expiryDate }}</p>
-      </div>
-    </div>
-  </div>
-  <div *ngIf="creditCards.length > 0">
-    <h3 class="text-center fs-3 mt-3">Kayıtlı Kartlarınız</h3>
-    <div class="list-group">
-      <button (click)="setCurrentCreditCart(creditCard)" class="list-group-item list-group-item-action"
-        aria-current="true" *ngFor="let creditCard of creditCards">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">{{ creditCard.cardOwnerFullName }}</h5>
-          <small>{{ creditCard.cardNumber }}</small>
-        </div>
-      </button>
-    </div>
-  </div>
-</div>
-
-<button id="creditCartSaveModalTrigger" data-bs-toggle="modal" data-bs-target="#creditCartAddModal"
-  class="btn btn-success invisible"></button>
-<!-- Modal -->
-<div class="modal fade" id="creditCartAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Soru</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">Kredi kartınızı kayıt edelim mi?</div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Kayıt Etme
-        </button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addCreditCard()">
-          Kayıt Et
-        </button>
-      </div>
-    </div>
-  </div>
-</div>

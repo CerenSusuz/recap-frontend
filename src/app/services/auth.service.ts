@@ -37,6 +37,7 @@ export class AuthService {
   logOut(){
     this.localStorageService.removeItem("token");
     this.localStorageService.removeItem("user");
+    this.localStorageService.removeItem("email");
   }
   
 }

@@ -13,6 +13,14 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class NavComponent implements OnInit {
 
+  user:User={
+    id:0,
+    firstName:"",
+    lastName:"",
+    email:"",
+    password:""
+  }
+
   constructor(private authService:AuthService,
     private localStorageService:LocalStorageService,
     private toastr:ToastrService,
