@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { ItemResponseModel } from '../models/itemResponseModel';
 import { User } from '../models/user';
 import { LocalStorageService } from './local-storage.service';
+import { ResponseModel } from '../models/responseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,16 @@ export class UserService {
   getByEmail(email:string):Observable<ItemResponseModel<User>>{
     let newPath = this.apiURL+'getbymail?email='+email;
     return this.httpClient.get<ItemResponseModel<User>>(newPath);
+  }
+
+  getUserById(userId: number): Observable<ItemResponseModel<User>> {
+    let newUrl = this.apiURL+'getbyid?id='+userId;
+    return this.httpClient.get<ItemResponseModel<User>>(newUrl);
+  }
+
+  update(user:User):Observable<ResponseModel>{
+    let newUrl= this.apiURL+"update";
+    return this.httpClient.post<ResponseModel>(newUrl,user);
   }
 
 }

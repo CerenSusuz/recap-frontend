@@ -7,6 +7,8 @@ import { Rental } from 'src/app/models/rental';
 import { Car } from 'src/app/models/car';
 import { Payment } from 'src/app/models/payment';
 import { environment } from 'src/environments/environment';
+import { FormGroup } from '@angular/forms';
+import { CreditCard } from 'src/app/models/creditCard';
 
 @Component({
   selector: 'app-payment',
@@ -18,6 +20,14 @@ export class PaymentComponent implements OnInit {
   rental:Rental;
   car:Car;
   amount:number;
+
+  creditCardGroup:FormGroup;
+  creditCard:CreditCard;
+  customerId: number;
+  nameOnTheCard: string;
+  cardNumber: string;
+  expirationDate: string;
+  cvv: string;
 
   imageURL=environment.baseURL;
 

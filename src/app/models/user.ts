@@ -3,7 +3,5 @@ export interface User{
     firstName:string;
     lastName:string;
     email:string;
-    passwordHash:string;
-    passwordSalt:string;
-    status:boolean;
+    password:string;
 }

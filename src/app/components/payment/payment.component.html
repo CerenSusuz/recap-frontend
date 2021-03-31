@@ -1,97 +1,148 @@
 <div class="card mt-4">
-    <div class="card-body">
-      <table class="table">
-        
-        <thead>
-          <tr>
-            <th>Brand</th>
-            <th>Color</th>
-            <th>Model Year</th>
-            <th>Rent Date</th>
-            <th>Return Date</th>
-            <th>Daily Price</th>
-            <th>Total</th>
-          </tr>
-        </thead>
+  <div class="card-body">
+    <table class="table">
 
-        <tbody>
-          <tr *ngIf="car!=undefined" >
-            <td>{{car.brandName}}</td>
-            <td>{{car.colorName}}</td>
-            <td>{{car.modelYear}}</td>
-            <td>{{rental.rentDate}}</td>
-            <td>{{rental.returnDate}}</td>
-            <td>{{car.dailyPrice | vatAdded:8 |currency}}</td>
-            <td><strong class="text-danger">{{amount | currency}}</strong></td>
-          </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th>Brand</th>
+          <th>Color</th>
+          <th>Model Year</th>
+          <th>Rent Date</th>
+          <th>Return Date</th>
+          <th>Daily Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
 
-      </table>
+      <tbody>
+        <tr *ngIf="car!=undefined">
+          <td>{{car.brandName}}</td>
+          <td>{{car.colorName}}</td>
+          <td>{{car.modelYear}}</td>
+          <td>{{rental.rentDate}}</td>
+          <td>{{rental.returnDate}}</td>
+          <td>{{car.dailyPrice | vatAdded:8 |currency}}</td>
+          <td><strong class="text-danger">{{amount | currency}}</strong></td>
+        </tr>
+      </tbody>
 
-    </div>
+    </table>
+
   </div>
-  
-  <div class="card mt-4">
-    
-    <div class="card-body">
+</div>
 
-      <img src="{{imageURL}}/uploads/credit-card.png" alt="No IMG" style="width: 240px;">
+<div class="card mt-4">
 
-      <div class="row">
-        
+  <div class="card-body">
+
+    <img src="{{imageURL}}/uploads/credit-card.png" alt="No IMG" style="width: 240px;">
+
+    <div class="row">
+      <form [formGroup]="creditCardGroup">
         <div class="inputbox mt-3">
           <span>Name on the card</span>
-          <input
-            type="text"
-            class="form-control"
-            required="required"
-          />
+          <input [(ngModel)]="nameOnTheCard" type="text" class="form-control" required="required"
+            formControlName="nameOnTheCard" />
         </div>
 
-          <div class="col-md-8">
-            <div class="inputbox mt-3 mr-2">
-              <span>Card Number</span>
-              <input
-                type="text"
-                class="form-control"
-                required="required"
-              />
-            </div>
+        <div class="col-md-8">
+          <div class="inputbox mt-3 mr-2">
+            <span>Card Number</span>
+            <input [(ngModel)]="cardNumber" formControlName="cardNumber" type="text" class="form-control"
+              required="required" />
           </div>
+        </div>
 
-          <div class="col-md-4">
-              <div class="inputbox mt-3 mr-2">
-                <span>Expiration Date</span>
-                <input
-                  type="text"
-                  class="form-control"
-                  required="required"
-                />
-              </div>
-            </div>
-            
-            <div class="col-md-4">
-            <div class="inputbox mt-3 mr-2">
-              <span>Security Code</span>
-              <input
-                type="text"
-                class="form-control"
-                required="required"
-              />
-            </div>
-            </div>
-        
-      </div>
-      
+        <div class="col-md-4">
+          <div class="inputbox mt-3 mr-2">
+            <span>Expiration Date</span>
+            <input [(ngModel)]="expirationDate" type="text" formControlName="expirationDate" placeholder="MM/YY"
+              class="form-control" required="required" />
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="inputbox mt-3 mr-2">
+            <span>Security Code</span>
+            <input [(ngModel)]="cvv" type="text" class="form-control" required="required" />
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="card-footer">
-      <div class="row">
-          <button (click)="payment()" class="btn btn-success">      
-            <img  src="{{imageURL}}/uploads/yellowCard.png" alt="No IMG" style="width: 40px;">
-            <img  src="{{imageURL}}/uploads/redCard.png" alt="No IMG" style="width: 40px;">
-            <img  src="{{imageURL}}/uploads/blueCard.png" alt="No IMG" style="width: 40px;">
-            <strong>{{ amount | currency }}  PAY </strong>
-          </button>
+
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <button (click)="payment()" class="btn btn-success">
+        <img src="{{imageURL}}/uploads/yellowCard.png" alt="No IMG" style="width: 40px;">
+        <img src="{{imageURL}}/uploads/redCard.png" alt="No IMG" style="width: 40px;">
+        <img src="{{imageURL}}/uploads/blueCard.png" alt="No IMG" style="width: 40px;">
+        <strong>{{ amount | currency }} PAY </strong>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="col-md-12 col-lg-5">
+  <div class="creditCart text-light row">
+    <div class="col-12 row">
+      <div class="col-4">
+        <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" class="img-fluid mt-2" />
       </div>
+      <div class="col-8">
+        <p class="mt-2 fs-2 fw-bold float-end">Credit Cart</p>
+      </div>
+    </div>
+    <div class="col-12">
+      <img src="assets/images/icons/chip.png" class="float-start ms-3" style="width: 15%" />
+    </div>
+    <div class="col-12">
+      <h3 class="creditCartFont fs-2 ms-3">{{ cardNumber }}</h3>
+    </div>
+    <div class="col-12 row">
+      <div class="col-8">
+        <p class="ms-3 creditCartFont">{{ nameSurname }}</p>
+      </div>
+      <div class="col-4 creditCartFont">
+        <p>{{ expiryDate }}</p>
+      </div>
+    </div>
   </div>
+  <div *ngIf="creditCards.length > 0">
+    <h3 class="text-center fs-3 mt-3">Kayıtlı Kartlarınız</h3>
+    <div class="list-group">
+      <button (click)="setCurrentCreditCart(creditCard)" class="list-group-item list-group-item-action"
+        aria-current="true" *ngFor="let creditCard of creditCards">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ creditCard.cardOwnerFullName }}</h5>
+          <small>{{ creditCard.cardNumber }}</small>
+        </div>
+      </button>
+    </div>
   </div>
+</div>
+
+<button id="creditCartSaveModalTrigger" data-bs-toggle="modal" data-bs-target="#creditCartAddModal"
+  class="btn btn-success invisible"></button>
+<!-- Modal -->
+<div class="modal fade" id="creditCartAddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Soru</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">Kredi kartınızı kayıt edelim mi?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Kayıt Etme
+        </button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addCreditCard()">
+          Kayıt Et
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

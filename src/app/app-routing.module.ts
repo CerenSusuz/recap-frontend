@@ -22,6 +22,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RentalListComponent } from './components/rentals/rental-list/rental-list.component';
 import { RentalComponent } from './components/rentals/rental/rental.component';
+import { UserEditComponent } from './components/users/user-edit/user-edit.component';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
@@ -54,7 +55,9 @@ const routes: Routes = [
   {path:"car/addImage/:id",component:CarImageAddComponent,canActivate:[LoginGuard]},
 
   {path:"login",component:LoginComponent},
-  {path:"register",component:RegisterComponent}
+  {path:"register",component:RegisterComponent},
+
+  {path:"user/edit/:id",component:UserEditComponent}
 
 ];
 
