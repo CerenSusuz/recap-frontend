@@ -31,7 +31,7 @@ export class PaymentComponent implements OnInit {
   cardId: number;
 
   creditCards: CreditCard[] = [];
-  cardAddForm: FormGroup;
+  creditCardAddForm: FormGroup;
 
   constructor(private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -48,18 +48,18 @@ export class PaymentComponent implements OnInit {
         this.rental = JSON.parse(params['rental']);
         this.getCar();
         this.getCardByCustomer();
-        this.createCreditCardForm();
+        this.createCreditCardAddForm();
       }
     })
   }
 
-  createCreditCardForm() {
-    this.cardAddForm = this.formBuilder.group({
-      customerCard: ['', Validators.required],
-      nameOnTheCard: ['', Validators.required],
-      cardNumber: ['', Validators.required],
-      cvv: ['', Validators.required],
-      expirationDate: ['', Validators.required],
+  createCreditCardAddForm() {
+    this.creditCardAddForm = this.formBuilder.group({
+      customerCards: ['', Validators.required],
+      nameOnTheCard: ['', Validators.required,Validators.maxLength(20)],
+      cardNumber: ['', Validators.required,Validators.maxLength(16)],
+      cvv: ['', Validators.required,Validators.maxLength(3)],
+      expirationDate: ['', Validators.required,Validators.maxLength(5)],
     });
   }
 
@@ -74,35 +74,26 @@ export class PaymentComponent implements OnInit {
     this.creditCardService.add(cardModel).subscribe((response) => {
       this.toastr.success('SAVE OK');
       this.payment();
-    }, responseCardError => {
-      this.toastr.error('ERRORR');
-    }
-    );
-  }
-
-  notSave() {
-    this.payment();
+    },responseError => {
+      this.toastr.error('ERRORR',responseError.error);
+    });
   }
 
   getCardByCustomer() {
     this.creditCardService.getByCustomerId(this.rental.customerID).subscribe(response => {
       this.creditCards = response.data;
-      console.info(this.creditCards);
-      this.setCard();
-    });
-  }
+      this.creditCards.forEach(response => {
+        this.cardNumber = response.cardNumber;
+        this.nameOnTheCard = response.nameOnTheCard;
+        this.expirationDate = response.expirationDate;
+        this.cvv = response.cvv;
+      });
 
-  setCard() {
-    this.creditCards.forEach(response => {
-      this.cardNumber = response.cardNumber;
-      this.nameOnTheCard = response.nameOnTheCard;
-      this.expirationDate = response.expirationDate;
-      this.cvv = response.cvv;
     });
   }
 
   setCardInfos() {
-    this.cardAddForm.patchValue({
+    this.creditCardAddForm.patchValue({
       cardNumber: this.cardNumber,
       nameOnTheCard: this.nameOnTheCard,
       expirationDate: this.expirationDate,
@@ -135,11 +126,9 @@ export class PaymentComponent implements OnInit {
       let paymentModel: Payment = {
         amount: this.amount
       }
-      console.log(paymentModel.amount)
       this.paymentService.payment(paymentModel).subscribe(response => {
         this.toastr.success("Payment OK");
       }, error => {
-        console.log(error)
         this.toastr.error(error.error);
       }
       )

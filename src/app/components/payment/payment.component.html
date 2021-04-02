@@ -49,29 +49,32 @@
 
     <img src="{{imageURL}}/uploads/credit-card.png" alt="No IMG" style="width: 240px;">
     <div>
+
       <div class="icons">
         <img src="https://img.icons8.com/color/48/000000/visa.png" />
         <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" />
         <img src="https://img.icons8.com/color/48/000000/maestro.png" />
       </div>
-      <form [formGroup]="cardAddForm">
+
+      <form [formGroup]="creditCardAddForm">
         <div *ngIf="creditCards.length>0" class="mb-3" style="width: 12rem;">
-          <label for="customerCard">Your Credit Cards</label>
+          <label for="customerCards">Your Credit Cards</label>
           <select class="form-control" (ngModelChange)="setCardInfos()" formControlName="customerCard" required
             id="customerCard" name="customerCard">
-            <option *ngFor="let card of creditCards" [value]="card.id" class="form-control">{{card.nameOnTheCard}}
+            <option *ngFor="let card of creditCards" [value]="card.id" class="form-control">{{card.cardNumber}}
             </option>
           </select>
         </div>
+
         <div class="form-floating mb-3">
           <input type="text" id="nameOnTheCard" class="form-control" placeholder="nameOnTheCard"
             formControlName="nameOnTheCard">
-          <label for="nameOnTheCard">Kart Üzerindeki Ad ve Soyad</label>
+          <label for="nameOnTheCard">Name on the Card</label>
         </div>
 
         <div class="form-floating mb-3">
           <input type="text" id="cardNumber" class="form-control" placeholder="cardNumber" formControlName="cardNumber">
-          <label for="cardNumber">Kart Numarası</label>
+          <label for="cardNumber">Card Number</label>
         </div>
 
         <div class="row">
@@ -79,7 +82,7 @@
             <div class="form-floating mb-3">
               <input type="text" id="expirationDate" class="form-control" placeholder="expirationDate"
                 formControlName="expirationDate">
-              <label for="expirationDate">Son Kullanım Tarihi</label>
+              <label for="expirationDate">Expiration Date</label>
             </div>
           </div>
           <div class="col-lg-6">
@@ -89,6 +92,8 @@
             </div>
           </div>
         </div>
+
+        <!-- payment -->
 
         <div class="card-footer">
           <div class="row">
@@ -100,7 +105,9 @@
             </button>
           </div>
         </div>
+
       </form>
 
     </div>
   </div>
+</div>
