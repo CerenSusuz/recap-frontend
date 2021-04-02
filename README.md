@@ -11,7 +11,19 @@
 <img src="images/scoreControl.png" alt="Logo" width="420" height="420">
 <img src="images/loggedIn.png" alt="Logo" width="420" height="420">
 <img src="images/notAvailable.png" alt="Logo" width="420" height="420">
-
+<img src="images/addBrand.png" alt="Logo" width="420" height="420">
+<img src="images/addColor.png" alt="Logo" width="420" height="420">
+<img src="images/brandList.png" alt="Logo" width="420" height="420">
+<img src="images/colorList.png" alt="a" width="420" height="420">
+<img src="images/customerList.png" alt="Logo" width="420" height="420">
+<img src="images/operationPage.png" alt="Logo" width="420" height="420">
+<img src="images/operationPage2.png" alt="Logo" width="420" height="420">
+<img src="images/operationPage3.png" alt="Logo" width="420" height="420">
+<img src="images/rentalList.png" alt="Logo" width="420" height="420">
+<img src="images/updateBrand.png" alt="Logo" width="420" height="420">
+<img src="images/updateCar.png" alt="Logo" width="420" height="420">
+<img src="images/updateColor.png" alt="Logo" width="420" height="420">
+<img src="images/uploadImage.png" alt="Logo" width="420" height="420">
 
 # Recap
 
