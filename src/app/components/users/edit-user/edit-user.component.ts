@@ -40,10 +40,9 @@ export class EditUserComponent implements OnInit {
   }
 
   getUser(){
-      if(this.email){
-        this.userService.getByEmail(this.email).subscribe(response=>{
+        this.userService.getByEmail(localStorage.getItem('email')!).subscribe(response=>{
             this.user = response.data;
-            this.editProfileForm.setValue({
+             this.editProfileForm.setValue({
               firstName:this.user.firstName,
               lastName:this.user.lastName,
               email:this.user.email,
@@ -52,7 +51,7 @@ export class EditUserComponent implements OnInit {
         },responseError=>{
           this.toastrService.error(responseError.error);
         })
-      }
+      
   }
 
   editProfile(){
