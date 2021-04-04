@@ -24,6 +24,14 @@
 <img src="images/updateCar.png" alt="Logo" width="420" height="420">
 <img src="images/updateColor.png" alt="Logo" width="420" height="420">
 <img src="images/uploadImage.png" alt="Logo" width="420" height="420">
+<img src="images/creditCard.png" alt="Logo" width="420" height="420">
+<img src="images/payment.png" alt="Logo" width="420" height="420">
+
+
+
+
+
+
 
 # Recap
 
