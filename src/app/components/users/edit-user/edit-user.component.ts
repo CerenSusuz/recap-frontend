@@ -2,11 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Customer } from 'src/app/models/customer';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
-import { CustomerService } from 'src/app/services/customer.service';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -24,14 +21,11 @@ export class EditUserComponent implements OnInit {
   constructor(private userService:UserService,
     private formBuilder:FormBuilder,
     private toastrService:ToastrService,
-    private localStorageService:LocalStorageService,
     private authService:AuthService,
     private router:Router) { }
 
   ngOnInit(): void {
     this.createProfileAddForm();
-    this.user = this.localStorageService.getItem("user");
-    this.email=this.localStorageService.getItem("email");
     console.log(this.user)
     this.getUser();
   }
@@ -46,8 +40,8 @@ export class EditUserComponent implements OnInit {
   }
 
   getUser(){
-      if(this.user){
-        this.userService.getUserById(this.user.id).subscribe(response=>{
+      if(this.email){
+        this.userService.getByEmail(this.email).subscribe(response=>{
             this.user = response.data;
             this.editProfileForm.setValue({
               firstName:this.user.firstName,

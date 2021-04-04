@@ -6,7 +6,6 @@ import { ItemResponseModel } from '../models/itemResponseModel';
 import { TokenModel } from '../models/tokenModel';
 import { LoginModel } from '../models/loginModel';
 import { RegisterModel } from '../models/registerModel';
-import { LocalStorageService } from './local-storage.service';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -17,7 +16,6 @@ export class AuthService {
   apiURL=environment.apiURL+'auth/';
 
   constructor(private httpClient:HttpClient,
-    private localStorageService:LocalStorageService,
     private router:Router) { }
 
   login(user:LoginModel):Observable<ItemResponseModel<TokenModel>>{
@@ -26,7 +24,7 @@ export class AuthService {
   }
 
   isAuthenticated(){
-    return this.localStorageService.isExist("token");
+    return localStorage.getItem("token");
   }
 
   register(registerModel: RegisterModel): Observable<ItemResponseModel<TokenModel>> {
@@ -35,9 +33,9 @@ export class AuthService {
   }
 
   logOut(){
-    this.localStorageService.removeItem("token");
-    this.localStorageService.removeItem("user");
-    this.localStorageService.removeItem("email");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("email");
   }
   
 }

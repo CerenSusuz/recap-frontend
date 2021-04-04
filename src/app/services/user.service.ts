@@ -4,7 +4,6 @@ import { Injectable, Input } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ItemResponseModel } from '../models/itemResponseModel';
 import { User } from '../models/user';
-import { LocalStorageService } from './local-storage.service';
 import { ResponseModel } from '../models/responseModel';
 
 @Injectable({

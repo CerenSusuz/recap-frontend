@@ -3,11 +3,11 @@ import { environment } from 'src/environments/environment';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { LoginModel } from 'src/app/models/loginModel';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -23,9 +23,9 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder:FormBuilder,
     private authService:AuthService,
     private toastr:ToastrService,
-    private localStorageService:LocalStorageService,
     private router:Router,
-    private userService:UserService) { }
+    private userService:UserService,
+    private localStorageService:LocalStorageService) { }
 
   ngOnInit(): void {
     this.createLoginForm();
@@ -45,14 +45,10 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(loginModel).subscribe(response=>{
         console.log(response);
-
-        this.localStorageService.setItem("token",response.data.token);
-        
-        this.getUserByEmail(loginModel.email);
-
+        localStorage.setItem("token",response.data.token);
         this.toastr.info(response.message)
         this.router.navigate(['/homepage'])
-         
+        this.getUser(loginModel.email);
       },responseError=>{
         console.log(responseError)
         this.toastr.error(responseError.error)
@@ -62,13 +58,14 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  getUserByEmail(email: string) {
-    this.userService.getByEmail(email).subscribe(response => {
-       this.user = response.data;
-       this.localStorageService.setItem("user",this.user);
-       this.localStorageService.setItem("email",this.user.email)
-    });
- }
+  getUser(email:string){
+      this.userService.getByEmail(email).subscribe((response) => {
+        this.user = response.data;
+        console.info(this.user)
+        localStorage.setItem("fullName", this.user.firstName + " " + this.user.lastName);
+        localStorage.setItem("email",this.user.email)
+      });
+  }
 
 
 

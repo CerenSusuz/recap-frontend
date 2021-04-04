@@ -5,7 +5,6 @@ import { ToastrService } from 'ngx-toastr';
 import { RegisterModel } from 'src/app/models/registerModel';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
 
@@ -21,7 +20,6 @@ export class RegisterComponent implements OnInit {
   imageURL=environment.baseURL;
 
   constructor(private authService:AuthService,
-    private localStorageService:LocalStorageService,
     private toastr:ToastrService,
     private formBuilder:FormBuilder,
     private router:Router,
@@ -45,7 +43,7 @@ export class RegisterComponent implements OnInit {
       let registerModel:RegisterModel = Object.assign({},this.registerForm.value);
       this.authService.register(registerModel).subscribe(response=>{
         console.log(response);
-        this.localStorageService.setItem("token",response.data.token);
+        localStorage.setItem("token",response.data.token);
         this.getUserByEmail(registerModel.email);
         this.toastr.info(response.message)
         this.router.navigate(['/login'])
@@ -62,7 +60,6 @@ export class RegisterComponent implements OnInit {
   getUserByEmail(email: string) {
     this.userService.getByEmail(email).subscribe(response => {
        this.user = response.data;
-       this.localStorageService.setItem("user",this.user);
     });
  }
 
