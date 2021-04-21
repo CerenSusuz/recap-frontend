@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
   }
 
   isLogOK(){
-    if(localStorage.getItem("token")){
+    if(sessionStorage.getItem("token")){
       return true;
     } else {
       return false;
@@ -28,7 +28,7 @@ export class NavComponent implements OnInit {
   }
 
   getUser(){
-    return localStorage.getItem('fullName');
+    return sessionStorage.getItem('fullName');
     }
 
   logout(){
