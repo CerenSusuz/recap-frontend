@@ -26,7 +26,6 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.createProfileAddForm();
-    console.log(this.user)
     this.getUser();
   }
 
