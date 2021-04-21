@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { LoginModel } from 'src/app/models/loginModel';
-import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +23,7 @@ export class LoginComponent implements OnInit {
     private authService:AuthService,
     private toastr:ToastrService,
     private router:Router,
-    private userService:UserService,
-    private localStorageService:LocalStorageService) { }
+    private userService:UserService) { }
 
   ngOnInit(): void {
     this.createLoginForm();
@@ -45,7 +43,7 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(loginModel).subscribe(response=>{
         console.log(response);
-        localStorage.setItem("token",response.data.token);
+        sessionStorage.setItem("token",response.data.token);
         this.toastr.info(response.message)
         this.router.navigate(['/homepage'])
         this.getUser(loginModel.email);
@@ -62,8 +60,8 @@ export class LoginComponent implements OnInit {
       this.userService.getByEmail(email).subscribe((response) => {
         this.user = response.data;
         console.info(this.user)
-        localStorage.setItem("fullName", this.user.firstName + " " + this.user.lastName);
-        localStorage.setItem("email",this.user.email)
+        sessionStorage.setItem("fullName", this.user.firstName + " " + this.user.lastName);
+        sessionStorage.setItem("email",this.user.email)
       });
   }
 
