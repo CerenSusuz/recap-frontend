@@ -39,7 +39,7 @@ export class EditUserComponent implements OnInit {
   }
 
   getUser(){
-        this.userService.getByEmail(localStorage.getItem('email')!).subscribe(response=>{
+        this.userService.getByEmail(sessionStorage.getItem('email')!).subscribe(response=>{
             this.user = response.data;
              this.editProfileForm.setValue({
               firstName:this.user.firstName,
@@ -51,6 +51,10 @@ export class EditUserComponent implements OnInit {
           this.toastrService.error(responseError.error);
         })
       
+  }
+  
+    getName(){
+    return sessionStorage.getItem('fullName');
   }
 
   editProfile(){
