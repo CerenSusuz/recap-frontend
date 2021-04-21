@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   isAuthenticated(){
-    return localStorage.getItem("token");
+    return sessionStorage.getItem("token");
   }
 
   register(registerModel: RegisterModel): Observable<ItemResponseModel<TokenModel>> {
@@ -33,9 +33,9 @@ export class AuthService {
   }
 
   logOut(){
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    localStorage.removeItem("email");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("email");
   }
   
 }
