@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       let registerModel:RegisterModel = Object.assign({},this.registerForm.value);
       this.authService.register(registerModel).subscribe(response=>{
         console.log(response);
-        localStorage.setItem("token",response.data.token);
+        sessionStorage.setItem("token",response.data.token);
         this.getUserByEmail(registerModel.email);
         this.toastr.info(response.message)
         this.router.navigate(['/login'])
